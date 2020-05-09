@@ -1,3 +1,2 @@
-# Kotlin Master
-##### This project contains all work related to kotlin language.
-
+# leetcode-answers-kotlin
+LeetCode problem solutions in kotlin language.
