@@ -1,2 +1,2 @@
-# leetcode-answers-kotlin
-LeetCode problem solutions in kotlin language.
+# leetcode-kotlin
+Leetcode solutions in kotlin language.
