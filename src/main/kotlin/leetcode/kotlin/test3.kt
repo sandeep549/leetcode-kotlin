@@ -24,7 +24,10 @@ fun main() {
     val tweetCounts = TweetCounts()
     tweetCounts.recordTweet("tweet3", 0)
     tweetCounts.recordTweet("tweet3", 60)
-    tweetCounts.recordTweet("tweet3", 10) // All tweets correspond to "tweet3" with recorded times at 0, 10 and 60.
+    tweetCounts.recordTweet(
+        "tweet3",
+        10
+    ) // All tweets correspond to "tweet3" with recorded times at 0, 10 and 60.
 
     println(
         tweetCounts.getTweetCountsPerFrequency(

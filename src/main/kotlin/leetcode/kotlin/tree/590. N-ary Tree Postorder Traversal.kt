@@ -1,6 +1,6 @@
 package leetcode.kotlin.tree
 
-import java.util.*
+import java.util.ArrayDeque
 
 // Recursive
 private fun postorder(root: NTreeNode?): List<Int> {
@@ -33,11 +33,9 @@ private fun postorder2(root: NTreeNode?): List<Int> {
     var pre: NTreeNode? = null
     while (!stack.isEmpty()) {
         cur = stack.peek()
-        if ((cur.children == null || cur.children!!.size == 0) || (
-            pre != null && cur.children!!.contains(
-                    pre
-                )
-            )
+        if ((cur.children == null || cur.children!!.size == 0) || (pre != null && cur.children!!.contains(
+                pre
+            ))
         ) {
             result.add(cur.`val`)
             stack.pop() // remove stack top as its processed

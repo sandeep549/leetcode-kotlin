@@ -15,3 +15,4 @@ private fun firstBadVersion(n: Int): Int {
     }
     return l
 }
+

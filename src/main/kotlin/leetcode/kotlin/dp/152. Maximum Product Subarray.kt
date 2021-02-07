@@ -3,22 +3,22 @@ package leetcode.kotlin.dp
 /**
 1. Optimal structure
 f(n) = Max(                 // max product till index n
- g`(n-1)*arr[n], // min product ending at index n-1 * arr[n]
- arr[n],         // element at index n, single element product
- f`(n-1)*arr[n], // max product ending at index n-1 * arr[n]
- f(n-1)          // max product found so far till index n-1
- )
+g`(n-1)*arr[n], // min product ending at index n-1 * arr[n]
+arr[n],         // element at index n, single element product
+f`(n-1)*arr[n], // max product ending at index n-1 * arr[n]
+f(n-1)          // max product found so far till index n-1
+)
 
 f`(n) = Max(                // max product ending at index n
- f'(n-1) * arr[n],
- arr[n],
- g'(n-1) * arr[n]
- )
+f'(n-1) * arr[n],
+arr[n],
+g'(n-1) * arr[n]
+)
 g`(n) = Min(                // min product ending at index n
- f'(n-1) * arr[n],
- arr[n],
- g'(n-1) * arr[n]
- )
+f'(n-1) * arr[n],
+arr[n],
+g'(n-1) * arr[n]
+)
 
 2. sub-problems calls tree for f(4), depicting overlapping sub-problems
 same as (53. Maximum Subarray.kt)

@@ -12,7 +12,6 @@ private fun filterRestaurants(
         .filter { it[4] <= maxDistance }
         .sortedWith(
             compareByDescending<IntArray> { it[1] } // sort by descending rating
-                .thenByDescending { it[0] }
-        ) // if rating match, then descending id
+                .thenByDescending { it[0] }) // if rating match, then descending id
         .map { it[0] } // gather only id's
 }

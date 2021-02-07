@@ -11,15 +11,15 @@ f`(n) = max sum including index n
 arr[n] = element at index n in given array
 
 2. sub-problems calls tree for f(4), depicting overlapping sub-problems
- f4
- /   \
- f3      f`3
- /  \       \
- f2     f`2    f`2
- /  \      \      \
- f1     f`1   f`1     f`1
- /  \     \      \      \
- f0   f`0   f`0    f`0    f`0
+f4
+/   \
+f3      f`3
+/  \       \
+f2     f`2    f`2
+/  \      \      \
+f1     f`1   f`1     f`1
+/  \     \      \      \
+f0   f`0   f`0    f`0    f`0
 
  */
 
