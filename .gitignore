@@ -33,3 +33,6 @@ build
 
 # gradle dir
 .gradle
+
+/local.properties
+/out/production/classes/META-INF/leetcode-kotlin.kotlin_module
