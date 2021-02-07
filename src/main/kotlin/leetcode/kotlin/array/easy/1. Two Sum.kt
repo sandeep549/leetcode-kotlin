@@ -8,11 +8,11 @@ fun main() {
 }
 
 private fun twoSum(nums: IntArray, target: Int): IntArray {
-    nums.forEachIndexed { fi, first ->
-        nums.forEachIndexed { si, second ->
-            if (first + second == target) return intArrayOf(
-                fi,
-                si
+    nums.forEachIndexed { firstIndex, firstElement ->
+        nums.forEachIndexed { secondIndex, secondElement ->
+            if (firstElement + secondElement == target) return intArrayOf(
+                firstIndex,
+                secondIndex
             )
         }
     }

@@ -1,6 +1,5 @@
 package leetcode.kotlin.tree.easy
 
-
 private fun isSubtree(s: TreeNode?, t: TreeNode?): Boolean {
     fun isSame(s: TreeNode?, t: TreeNode?): Boolean {
         if (s == null && t == null) return true

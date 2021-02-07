@@ -32,11 +32,11 @@ private fun islandPerimeter(grid: Array<IntArray>): Int {
 
         dp[i][j] = 1 // mark as seen/contributed
         return lcon(i, j) + // contribution from left side
-                rcon(i, j) + // contribution from right side
-                ucon(i, j) + // contribution from up side
-                bcon(i, j) + // contribution from bottom side
-                dfs(i, j - 1) + dfs(i, j + 1) + // recur for all neighbouring cells
-                dfs(i - 1, j) + dfs(i + 1, j)
+            rcon(i, j) + // contribution from right side
+            ucon(i, j) + // contribution from up side
+            bcon(i, j) + // contribution from bottom side
+            dfs(i, j - 1) + dfs(i, j + 1) + // recur for all neighbouring cells
+            dfs(i - 1, j) + dfs(i + 1, j)
     }
     // find first cells with 1 value, and apply dfs
     for (i in grid.indices) {

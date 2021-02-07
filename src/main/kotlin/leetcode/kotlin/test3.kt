@@ -26,19 +26,23 @@ fun main() {
     tweetCounts.recordTweet("tweet3", 60)
     tweetCounts.recordTweet("tweet3", 10) // All tweets correspond to "tweet3" with recorded times at 0, 10 and 60.
 
-    println(tweetCounts.getTweetCountsPerFrequency(
-        "minute",
-        "tweet3",
-        0,
-        59
-    ))
+    println(
+        tweetCounts.getTweetCountsPerFrequency(
+            "minute",
+            "tweet3",
+            0,
+            59
+        )
+    )
 
-    println(tweetCounts.getTweetCountsPerFrequency(
-        "minute",
-        "tweet3",
-        0,
-        60
-    ))
+    println(
+        tweetCounts.getTweetCountsPerFrequency(
+            "minute",
+            "tweet3",
+            0,
+            60
+        )
+    )
 
     tweetCounts.recordTweet("tweet3", 120)
 
