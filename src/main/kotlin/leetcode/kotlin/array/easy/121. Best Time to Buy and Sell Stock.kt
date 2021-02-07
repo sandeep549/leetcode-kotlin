@@ -16,7 +16,7 @@ fun main() {
 
 /**
  * Try with buy stock on each day and check the profit if we sell it on
- * every right side of it, retaining max profit found so far
+ * every right side of it, retaining max profit found so far.
  */
 private fun maxProfit(prices: IntArray): Int {
     var max = 0
