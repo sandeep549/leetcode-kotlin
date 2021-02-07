@@ -1,13 +1,15 @@
 package leetcode.kotlin.array.easy
 
 import kotlin.math.max
+import kotlin.math.min
 
 fun main() {
-    println(maxProfit2(intArrayOf(7, 1, 5, 3, 6, 4)))
-    println(maxProfit2(intArrayOf(7, 6, 4, 3, 1)))
+    check(maxProfit2(intArrayOf(7, 1, 5, 3, 6, 4)) == 5)
+    check(maxProfit2(intArrayOf(7, 6, 4, 3, 1)) == 0)
 
-    println(maxProfit3(intArrayOf(7, 1, 5, 3, 6, 4)))
-    println(maxProfit3(intArrayOf(7, 6, 4, 3, 1)))
+    check(maxProfit3(intArrayOf(7, 1, 5, 3, 6, 4)) == 5)
+    check(maxProfit2(intArrayOf(7, 6, 4, 3, 1)) == 0)
+
 }
 
 /**
@@ -16,9 +18,11 @@ fun main() {
  */
 private fun maxProfit(prices: IntArray): Int {
     var max = 0
-    for (i in 0..prices.size - 2) {
-        for (j in i + 1..prices.size - 1) {
-            max = max(max, prices[j] - prices[i])
+    for (i in 0 until prices.lastIndex) {
+        for (j in i + 1 until prices.lastIndex + 1) {
+            (prices[j] - prices[i]).run {
+                if (this > max) max = this
+            }
         }
     }
     return max
@@ -40,12 +44,11 @@ private fun maxProfit2(prices: IntArray): Int {
  * and min found so far.
  */
 private fun maxProfit3(arr: IntArray): Int {
-    if (arr.isEmpty()) return 0
-    var min = arr[0]
-    var ans = 0
+    var min_price_so_far = arr[0]
+    var max_profit_so_far = 0
     for (i in 1..arr.lastIndex) {
-        ans = Math.max(ans, arr[i] - min)
-        min = Math.min(min, arr[i])
+        max_profit_so_far = max(max_profit_so_far, arr[i] - min_price_so_far)
+        min_price_so_far = min(min_price_so_far, arr[i])
     }
-    return ans
+    return max_profit_so_far
 }
