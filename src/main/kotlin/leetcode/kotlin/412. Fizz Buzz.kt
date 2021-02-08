@@ -1,6 +1,17 @@
-package leetcode.kotlin.misc
+package leetcode.kotlin
 
 private fun fizzBuzz(n: Int): List<String> {
+    return (1..n).map {
+        when {
+            it % 15 == 0 -> "FizzBuzz"
+            it % 5 == 0 -> "Buzz"
+            it % 3 == 0 -> "Fizz"
+            else -> it.toString()
+        }
+    }
+}
+
+private fun fizzBuzz2(n: Int): List<String> {
     var map = mapOf( // Order matters here, so under the hood LinkedHashMap
         3 to "Fizz",
         5 to "Buzz"
@@ -15,15 +26,4 @@ private fun fizzBuzz(n: Int): List<String> {
         ans.add(str)
     }
     return ans
-}
-
-private fun fizzBuzz2(n: Int): List<String> {
-    return (1..n).map {
-        when {
-            it % 15 == 0 -> "FizzBuzz"
-            it % 5 == 0 -> "Buzz"
-            it % 3 == 0 -> "Fizz"
-            else -> it.toString()
-        }
-    }
 }
