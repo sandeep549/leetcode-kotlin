@@ -1,4 +1,4 @@
-package leetcode.kotlin.misc
+package leetcode.kotlin
 
 fun reverseString1(s: CharArray) {
     s.reverse()
