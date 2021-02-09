@@ -19,7 +19,7 @@ private fun intersect2(nums1: IntArray, nums2: IntArray): IntArray {
     nums2.sort()
     var i = 0
     var j = 0
-    val ans = ArrayList<Int>()
+    val ans = mutableListOf<Int>()
     while (i < nums1.size && j < nums2.size) {
         when {
             nums1[i] < nums2[j] -> i++
