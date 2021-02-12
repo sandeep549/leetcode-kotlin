@@ -1,6 +1,12 @@
 package leetcode.kotlin.z_ImportantCodeSnippet
 
-import java.util.*
+import java.util.ArrayDeque
+import java.util.Deque
+import java.util.LinkedList
+
+fun main() {
+    PleaseRunToBetterUnderstandMe()
+}
 
 private fun listInKotlin() {
     // 1
@@ -32,10 +38,6 @@ private fun mapsInKotlin() {
     var hasmap = hashMapOf<Int, Int>() // java HashMap, mutable
     /*5*/
     var likedhashmap = linkedMapOf<Int, Int>() // java LinkedHashMap, mutable, same as 2 internally
-}
-
-fun main() {
-    PleaseRunToBetterUnderstandMe()
 }
 
 private fun PleaseRunToBetterUnderstandMe() {

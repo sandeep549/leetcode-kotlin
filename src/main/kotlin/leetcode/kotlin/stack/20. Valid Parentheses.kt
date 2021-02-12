@@ -1,29 +1,23 @@
 package leetcode.kotlin.stack
 
-import java.util.*
+import java.util.ArrayDeque
 
 fun main() {
-    println(isValid("(){}[]"))
-    println(isValid("(}"))
+    check(isValid("(){}[]"))
+    check(!isValid("(}"))
 }
 
 private fun isValid(s: String): Boolean {
-    var map = hashMapOf('(' to ')', '{' to '}', '[' to ']')
-    var stack = ArrayDeque<Char>()
-    for (c in s.toCharArray()) {
-        if (map.containsKey(c)) stack.push(c)
-        else if (map.containsKey(stack.peek()) && map.get(stack.peek()) == c) stack.pop()
-        else return false
-    }
-    return stack.isEmpty()
-}
+    val map = hashMapOf(
+        '(' to ')',
+        '{' to '}',
+        '[' to ']'
+    )
+    val stack = ArrayDeque<Char>()
+    s.forEach { ch ->
+        if (ch == map[stack.peek()]) stack.pop()
+        else stack.push(ch)
 
-private fun isValid2(s: String): Boolean {
-    var map = hashMapOf('(' to ')', '{' to '}', '[' to ']')
-    var stack = ArrayDeque<Char>()
-    for (c in s.toCharArray()) {
-        if (map.containsKey(c)) stack.push(map.get(c))
-        else if (stack.isEmpty() || stack.pop() != c) return false
     }
     return stack.isEmpty()
 }
