@@ -33,3 +33,25 @@ private fun plusOne2(digits: IntArray): IntArray {
     }
     return digits
 }
+
+private fun plusOne3(digits: IntArray): IntArray {
+    digits.forEachIndexedReverse() { index, digit ->
+        if (digit != 9) {
+            digits[index]++
+            return digits
+        } else {
+            digits[index] = 0
+        }
+    }
+    val arr = IntArray(digits.size + 1) { 0 }
+    arr[0] = 1
+    return arr
+}
+
+inline fun IntArray.forEachIndexedReverse(action: (Int, Int) -> Unit): Unit {
+    for (index in this.lastIndex downTo 0) action(index, this[index])
+}
+
+inline fun IntArray.forEachReverse(action: (Int) -> Unit): Unit {
+    for (index in this.lastIndex downTo 0) action(this[index])
+}
