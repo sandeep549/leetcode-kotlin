@@ -2,7 +2,7 @@ package leetcode.kotlin.binarysearch
 
 /**
  * I understand that square root finding is complex problem and it require a through study for some mathematics algorithms,
- * But as question does not need exact decimal points and aproximation, we can stick to this descrition and write simple algorithms.
+ * But as question does not need exact decimal points and aproximation, we can stick to this description and write simple algorithms.
  * PS: Though I understand we need to know all these algorithms mentioned in best answers, but this question actually doesn't demand it.
  */
 
@@ -17,17 +17,19 @@ package leetcode.kotlin.binarysearch
 private fun mySqrt(x: Int): Int {
     var i = 1
     while (i <= x / i) {
-        if (i > x / i) break
         i++
     }
     return i - 1
 }
 
+// TODO: 14/2/21 try to remove long
 // newton's method
 private fun mySqrt2(x: Int): Int {
     if (x == 0) return 0
     var i = x.toLong()
-    while (i > x / i) i = (i + x / i) / 2
+    while (i > x / i) {
+        i = (i + x / i) / 2
+    }
     return i.toInt()
 }
 
