@@ -6,11 +6,13 @@ fun main() {
 
 // top-down using recursion
 private fun climbStairs(n: Int): Int {
-    var dp = IntArray(n + 1)
+    val dp = IntArray(n + 1)
     fun ways(n: Int): Int {
-        if (n < 0) return 0
-        if (n == 0) return 1
-        if (dp[n] == 0) dp[n] = ways(n - 1) + ways(n - 2)
+        if (n == 0 || n == 1) return n
+        if (n == 2) return 2
+        if (dp[n] == 0) {
+            dp[n] = ways(n - 1) + ways(n - 2)
+        }
         return dp[n]
     }
     return ways(n)
@@ -18,14 +20,13 @@ private fun climbStairs(n: Int): Int {
 
 // bottom-up
 private fun climbStairs2(n: Int): Int {
-    var prepre = 1 // ways to come at step 0, we can take some other value also but base case will
-    // increase, so better take this as 0
-    var pre = 1 // ways to come at step 1, using single step
-    var ans = 1 // keep track of ways to reach at every step, keep it 1 to handle where input n is 1
-    for (i in 2..n) {
-        ans = prepre + pre
-        prepre = pre
-        pre = ans
+    var a = 0 // ways to come at step 0
+    var b = 1 // ways to come at step 1
+    var c = 0 // keep track of ways to reach at every step
+    for (i in 1..n) {
+        c = a + b
+        a = b
+        b = c
     }
-    return ans
+    return c
 }
