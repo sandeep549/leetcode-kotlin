@@ -20,9 +20,9 @@ private fun climbStairs(n: Int): Int {
 
 // bottom-up
 private fun climbStairs2(n: Int): Int {
-    var a = 0 // ways to come at step 0
-    var b = 1 // ways to come at step 1
-    var c = 0 // keep track of ways to reach at every step
+    var a = 0
+    var b = 1
+    var c = 0
     for (i in 1..n) {
         c = a + b
         a = b
