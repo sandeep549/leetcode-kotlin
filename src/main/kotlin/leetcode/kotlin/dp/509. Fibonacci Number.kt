@@ -2,33 +2,33 @@ package leetcode.kotlin.dp
 
 // recursion
 private fun fib(N: Int): Int {
-    if (N == 0) return 0
-    if (N == 1) return 1
+    if (N == 0 || N == 1) return N
     return fib(N - 1) + fib(N - 2)
 }
 
 // dp, top-down
 private fun fib2(N: Int): Int {
-    var dp = IntArray(N + 1) { 0 }
+    val dp = IntArray(N + 1)
     fun recur(n: Int): Int {
-        if (n == 0) dp[n] = 0
-        else if (n == 1) dp[n] = 1
-        else if (dp[n] == 0) dp[n] = recur(n - 1) + recur(n - 2)
+        if (n == 0 || n == 1) return n
+        if (dp[n] == 0) {
+            dp[n] = recur(n - 1) + recur(n - 2)
+        }
         return dp[n]
     }
-    recur(N)
-    return dp[N]
+    return recur(N)
 }
 
 // dp, bottom-up
 private fun fib3(N: Int): Int {
+    if (N == 0) return 0
     var a = 0
-    var b = 0 // 0th item in series
-    var n = N
-    while (n-- > 0) {
-        var sum = a + if (b > 0) b else 1 // handle 1st item case
+    var b = 1
+    var c = 1
+    for (i in 2..N) {
+        c = a + b
         a = b
-        b = sum
+        b = c
     }
-    return b
+    return c
 }
