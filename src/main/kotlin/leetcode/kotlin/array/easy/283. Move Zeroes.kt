@@ -8,7 +8,7 @@ fun main() {
 
 private fun moveZeroes(nums: IntArray): Unit {
     var i = 0 // index to iterate
-    var j = 0 // track just next location to already processed array
+    var j = 0 // keeps just next location to already processed array
     while (i < nums.size) {
         if (nums[i] != 0) {
             if (i != j) nums[j] = nums[i]
