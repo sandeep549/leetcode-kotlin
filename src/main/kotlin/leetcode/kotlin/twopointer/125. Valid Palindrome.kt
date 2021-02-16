@@ -11,13 +11,31 @@ fun main() {
 }
 
 private fun isPalindrome(s: String): Boolean {
-    var arr = s.toCharArray()
     var l = 0
-    var r = arr.lastIndex
+    var r = s.lastIndex
     while (l < r) {
-        while (l < r && !Character.isLetterOrDigit(arr[l])) l++
-        while (l < r && !Character.isLetterOrDigit(arr[r])) r--
-        if (Character.toLowerCase(arr[l++]) != Character.toLowerCase(arr[r--])) return false
+        while (l < r && !s[l].isLetterOrDigit()) l++
+        while (l < r && !s[r].isLetterOrDigit()) r--
+        if (s[l].toLowerCase() != s[r].toLowerCase()) return false
+        l++
+        r--
+    }
+    return true
+}
+
+private fun isPalindrome2(s: String): Boolean {
+    var l = 0
+    var r = s.lastIndex
+    while (l < r) {
+        if (!s[l].isLetterOrDigit()) {
+            l++
+        } else if (!s[r].isLetterOrDigit()) {
+            r--
+        } else {
+            if (s[l].toLowerCase() != s[r].toLowerCase()) return false
+            l++
+            r--
+        }
     }
     return true
 }
