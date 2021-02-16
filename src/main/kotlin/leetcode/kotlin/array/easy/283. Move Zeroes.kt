@@ -2,51 +2,23 @@ package leetcode.kotlin.array.easy
 
 fun main() {
     var arr = intArrayOf(0, 1, 0, 3, 12)
-    moveZeroes3(arr)
+    moveZeroes(arr)
     println(arr.toList().toString())
 }
 
-private fun moveZeroes(nums: IntArray) {
-    var cnt = 0
-    for (i in nums.indices) {
-        if (nums[i] == 0) {
-            cnt++
-            for (j in i until nums.lastIndex) {
-                nums[j] = nums[j + 1]
-            }
-        }
-    }
-    for (i in 1..cnt) {
-        nums[nums.size - i] = 0
-    }
-}
-
-private fun moveZeroes2(nums: IntArray) {
-    var lastNonZero = -1
-    for (i in nums.indices) {
+private fun moveZeroes(nums: IntArray): Unit {
+    var i = 0 // index to iterate
+    var j = 0 // track just next location to already processed array
+    while (i < nums.size) {
         if (nums[i] != 0) {
-            nums[++lastNonZero] = nums[i]
+            if (i != j) nums[j] = nums[i]
+            i++
+            j++
+        } else {
+            i++
         }
     }
-    for (i in lastNonZero + 1..nums.lastIndex) {
-        nums[i] = 0
+    while (j < nums.size) {
+        nums[j++] = 0
     }
-}
-
-private fun moveZeroes3(nums: IntArray) {
-    var lastNonZero = -1
-    for (i in nums.indices) {
-        if (nums[i] != 0) {
-            lastNonZero++
-            if (i != lastNonZero) nums[lastNonZero] = nums[i].also { nums[i] = nums[lastNonZero] }
-        }
-    }
-}
-
-private fun moveZero4(nums: IntArray) {
-    var i = 0
-    for (n in nums) {
-        if (n != 0) nums[i++] = n
-    }
-    while (i < nums.size) nums[i++] = 0
 }
