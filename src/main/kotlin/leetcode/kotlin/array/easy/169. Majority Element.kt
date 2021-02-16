@@ -12,7 +12,7 @@ private fun majorityElement(nums: IntArray): Int {
             }
         }
     }
-    return nums[0]
+    return nums[0] // we must never land here
 }
 
 // By Map
@@ -24,7 +24,7 @@ private fun majorityElement1(nums: IntArray): Int {
         map[n] = map.getOrDefault(n, 0)
         map[n]?.let { if (it > nums.size / 2) return n }
     }
-    return 0 // This will get execute, as there is always majority present in input
+    return 0 // we must never land here
 }
 
 // By sorting
@@ -43,6 +43,20 @@ private fun majorityElement3(nums: IntArray): Int {
             major = nums[i]
         }
         count += if (nums[i] == major) 1 else -1
+    }
+    return major
+}
+
+// Boyer more
+private fun majorityElement5(nums: IntArray): Int {
+    var major = nums[0]
+    var count = 1
+    for (i in 1 until nums.size) {
+        count += if (nums[i] == major) 1 else -1
+        if (count == 0) {
+            major = nums[i]
+            count = 1
+        }
     }
     return major
 }
