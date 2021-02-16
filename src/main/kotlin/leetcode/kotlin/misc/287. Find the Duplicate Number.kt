@@ -1,21 +1,31 @@
 package leetcode.kotlin.misc
 
+import kotlin.math.abs
+
+// without modifying array
 private fun findDuplicate(nums: IntArray): Int {
-    // Find the intersection point of the two runners.
-    var tortoise = nums[0]
-    var hare = nums[0]
+    var slow = nums[0]
+    var fast = nums[0]
     do {
-        tortoise = nums[tortoise]
-        hare = nums[nums[hare]]
-    } while (tortoise != hare)
+        slow = nums[slow]
+        fast = nums[nums[fast]]
+    } while (slow != fast)
 
-    // Find the "entrance" to the cycle.
-    var ptr1 = nums[0]
-    var ptr2 = tortoise
-    while (ptr1 != ptr2) {
-        ptr1 = nums[ptr1]
-        ptr2 = nums[ptr2]
+    // locate entrace of cycle
+    fast = nums[0]
+    while (fast != slow) {
+        fast = nums[fast]
+        slow = nums[slow]
     }
+    return slow
+}
 
-    return ptr1
+// with array modification
+private fun findDuplicate2(nums: IntArray): Int {
+    nums.forEachIndexed { index, item ->
+        val absItem = abs(item)
+        if (nums[absItem - 1] < 0) return absItem
+        nums[absItem - 1] *= -1
+    }
+    return 0 // we shouldn't never be here
 }
