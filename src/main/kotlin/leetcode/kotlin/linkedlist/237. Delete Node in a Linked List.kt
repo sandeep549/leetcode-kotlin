@@ -15,13 +15,15 @@ The given node will not be the tail and it will always be a valid node of the li
 Do not return anything from your function.
  */
 private fun deleteNode(node: ListNode?) {
-    var tmp = node!!.next
+    val tmp = node!!.next
     node.`val` = tmp!!.`val`
     node.next = tmp.next
-    tmp!!.next = null // isolate this mode from list
+    tmp.next = null // isolate this mode from list
 }
 
-private fun deleteNode2(node: ListNode) {
-    node.`val` = node!!.`val`
-    node.next = node.next!!.next
+private fun deleteNode2(node: ListNode?) {
+    node?.let {
+        it.`val` = it.next!!.`val` //we know next is never null from question
+        it.next = it.next!!.next
+    }
 }
