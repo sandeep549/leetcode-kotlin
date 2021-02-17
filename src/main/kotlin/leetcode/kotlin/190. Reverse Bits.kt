@@ -38,3 +38,4 @@ private fun reverseBits2(n: Int): Int {
 
 // TODO: 16/2/21 kotlin hexadecimal problem
 // https://youtrack.jetbrains.com/issue/KT-2780
+//https://youtrack.jetbrains.com/issue/KT-4749
