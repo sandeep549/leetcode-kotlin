@@ -2,24 +2,24 @@ package leetcode.kotlin.linkedlist
 
 // iterative
 private fun reverseList(head: ListNode?): ListNode? {
-    var hd: ListNode? = head
-    var first: ListNode? = null
-    while (hd != null) {
-        var next = hd.next
-        hd.next = first
-        first = hd
-        hd = next
+    var curr = head
+    var newHead: ListNode? = null
+    while (curr != null) {
+        val next = curr.next
+        curr.next = newHead
+        newHead = curr
+        curr = next
     }
-    return first
+    return newHead
 }
 
 // recursive implementation
 private fun reverseList2(head: ListNode?): ListNode? {
-    fun recur(curr: ListNode?, hd: ListNode?): ListNode? {
-        if (hd == null) return curr
-        var next = hd.next
-        hd.next = curr
-        return recur(hd, next)
+    fun recur(newHead: ListNode?, cur: ListNode?): ListNode? {
+        if (cur == null) return newHead
+        var next = cur.next
+        cur.next = newHead
+        return recur(cur, next)
     }
     return recur(null, head)
 }
