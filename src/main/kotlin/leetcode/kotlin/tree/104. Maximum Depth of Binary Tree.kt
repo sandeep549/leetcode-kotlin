@@ -1,15 +1,12 @@
 package leetcode.kotlin.tree
 
-private fun maxDepth(root: TreeNode?): Int {
-    fun dfs(root: TreeNode?): Int {
-        if (root == null) return 0
-        return maxOf(dfs(root.left), dfs(root.right)) + 1
-    }
-    return dfs(root)
-}
+import kotlin.math.max
 
-private fun maxDepth2(n: TreeNode?): Int {
-    return if (n == null) 0 else maxOf(maxDepth2(n.left), maxDepth2(n.right)) + 1
+private fun maxDepth(root: TreeNode?): Int {
+    root?.let {
+        return max(maxDepth(it.left), maxDepth(it.right)) + 1
+    }
+    return 0
 }
 
 // todo: do it iteratively
