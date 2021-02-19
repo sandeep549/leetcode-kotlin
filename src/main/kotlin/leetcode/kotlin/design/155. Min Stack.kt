@@ -1,6 +1,6 @@
 package leetcode.kotlin.design
 
-import java.util.*
+import java.util.ArrayDeque
 
 private class MinStack() {
 
@@ -52,3 +52,5 @@ private class MinStack2 {
         return stack.peek().min
     }
 }
+
+// TODO: 19/2/21 https://leetcode.com/problems/min-stack/discuss/49031/Share-my-Java-solution-with-ONLY-ONE-stack 
