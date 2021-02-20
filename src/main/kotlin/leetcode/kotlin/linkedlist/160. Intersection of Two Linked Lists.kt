@@ -2,7 +2,7 @@ package leetcode.kotlin.linkedlist
 
 private fun getIntersectionNode(headA: ListNode?, headB: ListNode?): ListNode? {
     var a = headA
-    var b = headA
+    var b = headB
     // loop stops in second iteration
     while (a != b) {
         // at the end of first iteration reset pointer to the end of another list
