@@ -19,7 +19,7 @@ private fun hasPathSum(root: TreeNode?, targetSum: Int): Boolean {
 
 private fun hasPathSum2(root: TreeNode?, targetSum: Int): Boolean {
     if (root == null) return false
-    if (root.left == null && root.right == null && targetSum - root.`val` == 0) return true
+    if (root.left == root.right) return targetSum == root.`val`
     return hasPathSum2(root.left, targetSum - root.`val`) || hasPathSum2(
         root.right,
         targetSum - root.`val`
