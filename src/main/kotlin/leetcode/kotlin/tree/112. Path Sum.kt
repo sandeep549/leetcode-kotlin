@@ -20,8 +20,27 @@ private fun hasPathSum(root: TreeNode?, targetSum: Int): Boolean {
 private fun hasPathSum2(root: TreeNode?, targetSum: Int): Boolean {
     if (root == null) return false
     if (root.left == root.right) return targetSum == root.`val`
-    return hasPathSum2(root.left, targetSum - root.`val`) || hasPathSum2(
-        root.right,
-        targetSum - root.`val`
-    )
+    return hasPathSum2(root.left, targetSum - root.`val`) ||
+        hasPathSum2(root.right, targetSum - root.`val`)
+}
+
+@ExperimentalStdlibApi
+private fun hasPathSum3(root: TreeNode?, targetSum: Int): Boolean {
+    class CustomNode(val node: TreeNode, val sum: Int)
+    if (root == null) return false
+    val queue = ArrayDeque<CustomNode>()
+    queue.add(CustomNode(root, 0))
+    while (!queue.isEmpty()) {
+        val cn = queue.removeFirst()
+        if (cn.node.left == cn.node.right &&
+            cn.node.`val` + cn.sum == targetSum
+        ) return true
+        cn.node.left?.let {
+            queue.add(CustomNode(it, cn.node.`val` + cn.sum))
+        }
+        cn.node.right?.let {
+            queue.add(CustomNode(it, cn.node.`val` + cn.sum))
+        }
+    }
+    return false
 }
