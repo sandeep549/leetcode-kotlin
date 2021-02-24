@@ -1,51 +1,84 @@
 package leetcode.kotlin.tree
 
-import java.util.ArrayDeque
+import java.util.ArrayList
+import java.util.Stack
 
 // Recursive
+private var list = mutableListOf<Int>()
 private fun postorder(root: NTreeNode?): List<Int> {
-    var ans = mutableListOf<Int>()
-    fun process(node: NTreeNode?) = node?.let { ans.add(it.`val`) }
-
-    fun dfs(root: NTreeNode?) {
-        root?.let {
-            it.children?.let {
-                for (node in it) dfs(node)
-            }
-            process(it)
+    root?.let {
+        it.children?.let {
+            for (node in it) postorder(node)
         }
+        list.add(root.`val`)
     }
-    dfs(root)
-
-    return ans
+    return list
 }
 
 // iterative, not verified on leetcode, no env. available to run for this question
+@ExperimentalStdlibApi
 private fun postorder2(root: NTreeNode?): List<Int> {
-    val result = mutableListOf<Int>()
-    val stack = ArrayDeque<NTreeNode>()
-    if (root == null) {
-        return result
+    val list: MutableList<Int> = ArrayList()
+    if (root == null) return list
+
+    val stack1 = Stack<NTreeNode>()
+    val stack2 = Stack<NTreeNode>()
+    stack1.add(root)
+
+    while (!stack1.empty()) {
+        val top = stack1.pop()
+        stack2.push(top)
+        top.children?.forEach { stack1.push(it) }
+    }
+    while (!stack2.empty()) {
+        list.add(stack2.pop().`val`)
     }
 
-    stack.push(root)
-    var cur = root
-    var pre: NTreeNode? = null
+    return list
+}
+
+private fun postorder3(root: NTreeNode?): List<Int> {
+    val list: MutableList<Int> = ArrayList()
+    if (root == null) return list
+
+    val stack = Stack<NTreeNode>()
+    stack.add(root)
+
     while (!stack.isEmpty()) {
-        cur = stack.peek()
-        if ((cur.children == null || cur.children!!.size == 0) || (pre != null && cur.children!!.contains(
-                pre
-            ))
-        ) {
-            result.add(cur.`val`)
-            stack.pop() // remove stack top as its processed
-            pre = cur // for backtracking
+        val root = stack.pop()
+        list.add(root.`val`)
+        root.children?.forEach { stack.add(it) }
+    }
+    list.reverse()
+    return list
+}
+
+// print along the way
+private fun postorder4(root: NTreeNode?): List<Int> {
+    if (root == null) return emptyList()
+
+    class CustomNode(val node: NTreeNode, var count: Int)
+
+    val list = mutableListOf<Int>()
+
+    val stack = Stack<CustomNode>()
+    stack.add(CustomNode(root, -1))
+
+    while (!stack.isEmpty()) {
+        val cn = stack.pop()
+        if (cn.node.children.isNullOrEmpty()) {
+            list.add(cn.node.`val`)
+            continue
+        }
+        if (cn.count == cn.node.children?.lastIndex) { // all children processed
+            list.add(cn.node.`val`)
         } else {
-            cur.children?.let {
-                for (node in it.reversed()) stack.push(node)
-            }
+            cn.count++ // point to next child
+            stack.push(cn) // push back parent again
+            val child = CustomNode(cn.node.children!![cn.count]!!, -1)
+            stack.push(child)
         }
     }
 
-    return result
+    return list
 }
