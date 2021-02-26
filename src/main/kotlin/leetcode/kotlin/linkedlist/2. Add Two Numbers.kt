@@ -57,3 +57,21 @@ private fun addTwoNumbers2(l1: ListNode?, l2: ListNode?): ListNode? {
     if (carry != 0) cur!!.next = ListNode(carry)
     return dummy.next
 }
+
+private fun addTwoNumbers3(l1: ListNode?, l2: ListNode?): ListNode? {
+    var n1 = l1
+    var n2 = l2
+    var c = 0
+    val dummy = ListNode(0)
+    var d = dummy
+    while (n1 != null || n2 != null || c != 0) {
+        val a = n1?.`val` ?: 0
+        val b = n2?.`val` ?: 0
+        d.next = ListNode((a + b + c) % 10)
+        d = d.next!!
+        c = (a + b + c) / 10
+        if (n1 != null) n1 = n1.next
+        if (n2 != null) n2 = n2.next
+    }
+    return dummy.next
+}
