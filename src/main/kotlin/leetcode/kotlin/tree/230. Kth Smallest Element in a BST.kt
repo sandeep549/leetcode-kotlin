@@ -1,8 +1,6 @@
 package leetcode.kotlin.tree
 
-import java.util.*
-
-// use of global k is discouraged, so see next solution
+// use of global k is discouraged??
 private fun kthSmallest(root: TreeNode?, k: Int): Int {
     var k = k
     var ans = 0
@@ -16,30 +14,18 @@ private fun kthSmallest(root: TreeNode?, k: Int): Int {
     return ans
 }
 
-private fun kthSmallest2(root: TreeNode?, k: Int): Int {
-    var ans = 0
-    fun inorder(root: TreeNode?, cnt: Int): Int {
-        if (cnt >= k || root == null) return cnt
-        var c = inorder(root.left, cnt)
-        if (++c == k) ans = root.`val`
-        return inorder(root.right, c)
-    }
-    inorder(root, 0)
-    return ans
-}
-
-private fun kthSmallest3(root: TreeNode, k: Int): Int {
+@ExperimentalStdlibApi
+private fun kthSmallest3(root: TreeNode?, k: Int): Int {
+    val stack = ArrayDeque<TreeNode>()
+    var root = root
     var k = k
-    var stack = ArrayDeque<TreeNode>()
-    var curr: TreeNode? = root
-    while (curr != null || !stack.isEmpty()) {
-        while (curr != null) {
-            stack.push(curr)
-            curr = curr.left
+    while (true) {
+        while (root != null) {
+            stack.addLast(root)
+            root = root.left
         }
-        curr = stack.pop()
-        if (--k == 0) return curr.`val`
-        curr = curr.right
+        root = stack.removeLast()
+        if (--k == 0) return root.`val`
+        root = root.right
     }
-    return 0
 }
