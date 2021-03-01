@@ -2,16 +2,9 @@ package leetcode.kotlin.tree
 
 import java.util.ArrayDeque
 
-/**
- * Traverse the tree and maintain hashmap of all elements with their frequencies.
- * Return element with highest frequency from map.
- * O(n), n is no of nodes in tree
- * O(n)
- */
-
 private fun findMode(root: TreeNode?): IntArray {
     if (root == null) return intArrayOf()
-    var map = hashMapOf<Int, Int>() // HashMap<Int, Int>()
+    val map = hashMapOf<Int, Int>() // HashMap<Int, Int>()
     fun dfs(root: TreeNode?) {
         root?.let {
             map.put(it.`val`, map.getOrDefault(it.`val`, 0) + 1)
@@ -20,8 +13,8 @@ private fun findMode(root: TreeNode?): IntArray {
         }
     }
     dfs(root)
-    var maxValue = map.maxBy { it.value }!!.value
-    var maxEntries = map.filterValues { it == maxValue }
+    val maxValue = map.maxBy { it.value }!!.value
+    val maxEntries = map.filterValues { it == maxValue }
     return maxEntries.keys.toIntArray()
 }
 
@@ -34,25 +27,24 @@ private fun findMode(root: TreeNode?): IntArray {
  */
 private fun findMode2(root: TreeNode?): IntArray {
     if (root == null) return intArrayOf()
-    var last: Int? = null
-    var frequency = 0
-    var max_so_far = 0
-    var ans = ArrayList<Int>()
-    fun checkValue(curr: Int) {
-        if (last == null || curr == last) {
-            frequency++
-            if (frequency == max_so_far) {
-                ans.add(curr)
-            } else if (frequency > max_so_far) {
+    var pre: Int? = null
+    var count = -1
+    var maxSoFar = 0
+    val ans = ArrayList<Int>()
+    fun checkValue(item: Int) {
+        if (item == pre) {
+            if (++count == maxSoFar) {
+                ans.add(item)
+            } else if (count > maxSoFar) {
                 ans.clear()
-                ans.add(curr)
+                ans.add(item)
             }
-            last = curr // for first element
-            max_so_far = max_so_far.coerceAtLeast(frequency)
+            pre = item
+            maxSoFar = maxOf(maxSoFar, count)
         } else {
-            last = curr
-            frequency = 1
-            if (max_so_far == frequency) ans.add(curr)
+            pre = item
+            count = 1
+            if (count >= maxSoFar) ans.add(item)
         }
     }
 
@@ -67,34 +59,30 @@ private fun findMode2(root: TreeNode?): IntArray {
     return ans.toIntArray()
 }
 
-/**
- * Same as above but iterative solution
- */
 private fun findMode3(root: TreeNode?): IntArray {
     if (root == null) return intArrayOf()
-    var last: Int? = null
-    var frequency = 0
-    var max_so_far = 0
-    var ans = ArrayList<Int>()
-    fun checkValue(curr: Int) {
-        if (last == null || curr == last) {
-            frequency++
-            if (frequency == max_so_far) {
-                ans.add(curr)
-            } else if (frequency > max_so_far) {
+    var pre: Int? = null
+    var count = -1
+    var maxSoFar = 0
+    val ans = ArrayList<Int>()
+    fun checkValue(item: Int) {
+        if (item == pre) {
+            if (++count == maxSoFar) {
+                ans.add(item)
+            } else if (count > maxSoFar) {
                 ans.clear()
-                ans.add(curr)
+                ans.add(item)
             }
-            last = curr // for first element
-            max_so_far = max_so_far.coerceAtLeast(frequency)
+            pre = item
+            maxSoFar = maxOf(maxSoFar, count)
         } else {
-            last = curr
-            frequency = 1
-            if (max_so_far == frequency) ans.add(curr)
+            pre = item
+            count = 1
+            if (count >= maxSoFar) ans.add(item)
         }
     }
 
-    var stack = ArrayDeque<TreeNode>()
+    val stack = ArrayDeque<TreeNode>()
     var curr = root
     while (curr != null || !stack.isEmpty()) {
         while (curr != null) {
