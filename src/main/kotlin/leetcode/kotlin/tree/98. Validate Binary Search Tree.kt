@@ -1,18 +1,5 @@
 package leetcode.kotlin.tree
 
-import java.util.*
-
-private fun isValidBST(root: TreeNode?): Boolean {
-    fun dfs(node: TreeNode?, l: Int?, r: Int?): Boolean {
-        if (node == null) return true
-        if (l != null && node.`val` <= l) return false
-        if (r != null && node.`val` >= r) return false
-        return dfs(node.left, l, node.`val`) && dfs(node.right, node.`val`, r)
-    }
-    return dfs(root, null, null)
-}
-
-// same as above only kotlin construct difference
 private fun isValidBST2(root: TreeNode?): Boolean {
     fun dfs(node: TreeNode?, l: Int?, r: Int?): Boolean {
         node ?: return true
@@ -23,16 +10,17 @@ private fun isValidBST2(root: TreeNode?): Boolean {
     return dfs(root, null, null)
 }
 
+@ExperimentalStdlibApi
 private fun isValidBST3(root: TreeNode?): Boolean {
-    val stack: Deque<TreeNode> = ArrayDeque()
+    val stack = ArrayDeque<TreeNode>()
     var inorder: Int? = null
     var curr = root
     while (!stack.isEmpty() || curr != null) {
         while (curr != null) {
-            stack.push(root)
+            stack.addLast(curr)
             curr = curr.left
         }
-        curr = stack.pop()
+        curr = stack.removeLast()
         // If next element in inorder traversal
         // is smaller than the previous one
         // that's not BST.
