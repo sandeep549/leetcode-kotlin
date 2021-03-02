@@ -6,4 +6,6 @@ Things that are annoying or need to be take care while coding in kotlin
 
 2. Function parameter are by default val and can not modified within function, due to which redeclaration 
     is required, which create verbosity and spoils that idea of kotlin to reduce verbosity.
+
+3. Hex values handling are not straight forward. Can't handle hex literals overflow.
     
