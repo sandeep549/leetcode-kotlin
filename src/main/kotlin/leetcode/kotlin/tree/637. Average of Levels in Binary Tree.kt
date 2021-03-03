@@ -1,8 +1,5 @@
 package leetcode.kotlin.tree
 
-import java.util.*
-import kotlin.collections.ArrayList
-
 // not tested, please re-test it
 private fun averageOfLevels(root: TreeNode?): DoubleArray {
     var list = ArrayList<Pair<Int, Double>>()
@@ -16,18 +13,20 @@ private fun averageOfLevels(root: TreeNode?): DoubleArray {
     return list.map { it.second / it.first }.toDoubleArray()
 }
 
+@ExperimentalStdlibApi
 private fun averageOfLevels2(root: TreeNode?): DoubleArray {
     val list: MutableList<Double> = ArrayList()
-    val queue: Queue<TreeNode> = ArrayDeque()
-    queue.offer(root)
+    val queue = ArrayDeque<TreeNode>()
+    queue.add(root!!)
     while (!queue.isEmpty()) {
         val count: Int = queue.size
+        var size = count
         var sum = 0.0
-        for (i in 0 until count) {
-            val cur: TreeNode = queue.poll()
+        while (size-- > 0) {
+            val cur: TreeNode = queue.removeFirst()
             sum += cur.`val`.toDouble()
-            if (cur.left != null) queue.offer(cur.left)
-            if (cur.right != null) queue.offer(cur.right)
+            cur.left?.let { queue.add(it) }
+            cur.right?.let { queue.add(it) }
         }
         list.add(sum / count)
     }
