@@ -1,7 +1,7 @@
 package leetcode.kotlin.tree
 
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.ArrayDeque
+import java.util.LinkedList
 
 // bfs
 fun levelOrderBottom(root: TreeNode?): List<List<Int>> {
@@ -28,10 +28,10 @@ fun levelOrderBottom(root: TreeNode?): List<List<Int>> {
 
 // dfs
 fun levelOrderBottom2(root: TreeNode?): List<List<Int>> {
-    var res = LinkedList<MutableList<Int>>()
+    val res = LinkedList<MutableList<Int>>()
     fun dfs(root: TreeNode?, level: Int) {
         root?.let {
-            if (level >= res.size) res.add(0, mutableListOf())
+            if (level == res.size) res.add(0, mutableListOf())
             dfs(it.left, level + 1)
             dfs(it.right, level + 1)
             res.get(res.size - level - 1).add(it.`val`)
@@ -43,10 +43,10 @@ fun levelOrderBottom2(root: TreeNode?): List<List<Int>> {
 
 // dfs
 fun levelOrderBottom3(root: TreeNode?): List<List<Int>> {
-    var res = mutableListOf<MutableList<Int>>()
+    val res = mutableListOf<MutableList<Int>>()
     fun dfs(root: TreeNode?, level: Int) {
         root?.let {
-            if (level >= res.size) res.add(level, mutableListOf())
+            if (level == res.size) res.add(level, mutableListOf())
             dfs(it.left, level + 1)
             dfs(it.right, level + 1)
             res.get(level).add(it.`val`)
