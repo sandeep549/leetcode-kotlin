@@ -1,32 +1,30 @@
 package leetcode.kotlin.tree
 
-import java.util.*
-
+@ExperimentalStdlibApi
 private fun zigzagLevelOrder(root: TreeNode?): List<List<Int>> {
-    var res = mutableListOf<MutableList<Int>>()
+    val res = mutableListOf<MutableList<Int>>()
     if (root == null) return res
-    var leftToRight = true
+    var lToR = true
     var stack = ArrayDeque<TreeNode>()
-    stack.push(root)
+    stack.add(root)
     while (!stack.isEmpty()) {
         var size = stack.size
-        var level = mutableListOf<Int>()
-        var tmp = ArrayDeque<TreeNode>()
-        while (size > 0) {
-            var node = stack.pop()
+        val level = mutableListOf<Int>()
+        val newStack = ArrayDeque<TreeNode>()
+        while (size-- > 0) {
+            val node = stack.removeLast()
             level.add(node.`val`)
-            if (leftToRight) {
-                node.left?.let { tmp.push(it) }
-                node.right?.let { tmp.push(it) }
+            if (lToR) {
+                node.left?.let { newStack.add(it) }
+                node.right?.let { newStack.add(it) }
             } else {
-                node.right?.let { tmp.push(it) }
-                node.left?.let { tmp.push(it) }
+                node.right?.let { newStack.add(it) }
+                node.left?.let { newStack.add(it) }
             }
-            size--
         }
         res.add(level)
-        leftToRight = !leftToRight
-        stack = tmp
+        lToR = !lToR
+        stack = newStack
     }
     return res
 }
