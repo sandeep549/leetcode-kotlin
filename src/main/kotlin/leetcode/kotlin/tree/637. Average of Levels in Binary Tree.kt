@@ -24,7 +24,7 @@ private fun averageOfLevels2(root: TreeNode?): DoubleArray {
         var sum = 0.0
         while (size-- > 0) {
             val cur: TreeNode = queue.removeFirst()
-            sum += cur.`val`.toDouble()
+            sum += cur.`val`
             cur.left?.let { queue.add(it) }
             cur.right?.let { queue.add(it) }
         }

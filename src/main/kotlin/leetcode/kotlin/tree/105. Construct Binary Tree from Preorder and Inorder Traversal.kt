@@ -9,10 +9,13 @@ private fun buildTree(preorder: IntArray, inorder: IntArray): TreeNode? {
     var i = 0
     fun dfs(l: Int, r: Int): TreeNode? {
         if (i >= preorder.size || l > r) return null
-        var ele = preorder[i++]
-        var k = l - 1
-        while (k < r) if (inorder[++k] == ele) break
-        var node = TreeNode(ele)
+        val root = preorder[i++]
+        var k = l
+        while (k < r) {
+            if (inorder[k] == root) break
+            k++
+        }
+        val node = TreeNode(root)
         node.left = dfs(l, k - 1)
         node.right = dfs(k + 1, r)
         return node
