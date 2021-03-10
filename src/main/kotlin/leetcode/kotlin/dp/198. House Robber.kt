@@ -7,23 +7,25 @@ package leetcode.kotlin.dp
  *           )
  */
 private fun rob(nums: IntArray): Int {
-    var dp = IntArray(nums.size)
-    fun find(n: Int): Int {
-        if (n < 0) return 0
-        if (n == 0) return nums[0]
-        if (dp[n] == 0) dp[n] = (find(n - 2) + nums[n]).coerceAtLeast(find(n - 1))
-        return dp[n]
+    val dp = IntArray(nums.size) { -1 }
+    fun robi(i: Int): Int {
+        if (i < 0) return 0
+        if (i == 0) return nums[i]
+        if (dp[i] == -1) {
+            dp[i] = maxOf(robi(i - 2) + nums[i], robi(i - 1))
+        }
+        return dp[i]
     }
-    return find(nums.size - 1)
+    return robi(nums.lastIndex)
 }
 
 private fun rob2(nums: IntArray): Int {
-    var sl = 0
-    var l = 0
+    var sl = 0 // second last house
+    var l = 0 // last house
     for (n in nums) {
-        var m = Math.max(sl + n, l)
+        val cur = Math.max(sl + n, l)
         sl = l
-        l = m
+        l = cur
     }
     return l
 }
