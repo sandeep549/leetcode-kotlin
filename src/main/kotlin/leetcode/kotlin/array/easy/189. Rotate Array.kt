@@ -26,7 +26,7 @@ private fun rotate2(nums: IntArray, k: Int) {
 
 // time-O(n), space-O(1); n is size of array
 private fun rotate4(nums: IntArray, k: Int) {
-    var rotation = k % nums.size
+    val rotation = k % nums.size
     var swap = 0
     var startIdx = 0
     while (startIdx < nums.size) {
