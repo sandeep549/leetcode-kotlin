@@ -5,23 +5,22 @@ fun main() {
 }
 
 private fun searchRange(nums: IntArray, target: Int): IntArray {
-    var ans = intArrayOf(-1, -1)
-    var l = 0
-    var r = nums.lastIndex
+    var lo = 0
+    var hi: Int = nums.lastIndex
     var mid = 0
-    while (l < r) {
-        mid = l + (r - l) / 2 // keep mid towards l side
-        if (target > nums[mid]) l = mid + 1
-        else r = mid
+    while (lo < hi) { // find first
+        mid = lo + (hi - lo) / 2
+        if (nums[mid] < target) lo = mid + 1 else hi = mid
     }
-    ans[0] = if (l == r && nums[l] == target) l else -1
-
-    r = nums.lastIndex
-    while (l < r) {
-        mid = l + (r - l + 1) / 2 // keep mid towards r side
-        if (target >= nums[mid]) l = mid
-        else r = mid - 1
+    val first = lo
+    // don't reset lo to 0
+    hi = nums.lastIndex
+    while (lo < hi) { // find last
+        mid = lo + (hi - lo + 1) / 2 // keep mid towards hi side
+        if (nums[mid] <= target) lo = mid else hi = mid - 1
     }
-    ans[1] = if (l == r && nums[l] == target) l else -1
-    return ans
+    return if (nums.isEmpty() || nums[lo] != target) intArrayOf(-1, -1) else intArrayOf(
+        first,
+        lo
+    )
 }
