@@ -1,6 +1,6 @@
 package leetcode.kotlin.array.easy
 
-fun productExceptSelf(nums: IntArray): IntArray? {
+private fun productExceptSelf(nums: IntArray): IntArray? {
     val result = IntArray(nums.size)
     var tmp = 1
     for (i in nums.indices) {
@@ -15,30 +15,30 @@ fun productExceptSelf(nums: IntArray): IntArray? {
     return result
 }
 
-fun productExceptSelf2(nums: IntArray): IntArray? {
-    var ans = IntArray(nums.size)
+private fun productExceptSelf2(nums: IntArray): IntArray? {
+    val ans = IntArray(nums.size)
     ans[nums.lastIndex] = 1
     for (i in nums.lastIndex - 1 downTo 0) ans[i] = ans[i + 1] * nums[i + 1]
     var mul = nums[0]
     for (i in 1..nums.lastIndex) {
         ans[i] = mul * ans[i]
-        mul = mul * nums[i]
+        mul *= nums[i]
     }
     return ans
 }
 
 // one pass, if don't count initialization pass
-fun productExceptSelf3(nums: IntArray): IntArray? {
+private fun productExceptSelf3(nums: IntArray): IntArray? {
     val result = IntArray(nums.size) { 1 }
-    var left = 1
-    var right = 1
+    var l = 1
+    var r = 1
     var i = 0
-    var j: Int = nums.size - 1
-    while (i < nums.size - 1) {
-        left *= nums[i]
-        right *= nums[j]
-        result[i + 1] *= left
-        result[j - 1] *= right
+    var j = nums.lastIndex
+    while (i < nums.lastIndex) {
+        l *= nums[i]
+        r *= nums[j]
+        result[i + 1] *= l
+        result[j - 1] *= r
         i++
         j--
     }
