@@ -1,34 +1,20 @@
 package leetcode.kotlin.math
 
+import kotlin.math.abs
+
 private fun divide(dividend: Int, divisor: Int): Int {
-    if (dividend == Int.MIN_VALUE && divisor == -1) return Int.MAX_VALUE
-    var a: Long = Math.abs(dividend.toLong())
-    var b: Long = Math.abs(divisor.toLong())
-    var sign = (if (dividend < 0) -1 else 1) * (if (divisor < 0) -1 else 1)
-    var cnt = 0
-    while (a >= b) {
-        a -= b
-        cnt++
-    }
-    return cnt * sign
-}
-
-private fun divide2(dividend: Int, divisor: Int): Int {
-    if (dividend == Int.MIN_VALUE && divisor == -1) return Int.MAX_VALUE
-    var sign = (if (dividend < 0) -1 else 1) * (if (divisor < 0) -1 else 1)
-    var a: Long = Math.abs(dividend.toLong())
-    var b: Long = Math.abs(divisor.toLong())
-    var ans = 0
-    while (a >= b) {
-        var m = 1
-        var tmp = b
-        while (tmp.shl(1) <= b) {
-            tmp = tmp.shl(1)
-            m = m.shl(1)
+    if (dividend == 1 shl 31 && divisor == -1) return (1 shl 31) - 1
+    var a = abs(dividend)
+    val b = abs(divisor)
+    var res = 0
+    var x = 0
+    while (a - b >= 0) {
+        x = 0
+        while (a - (b shl x shl 1) >= 0) {
+            x++
         }
-        a -= tmp
-        ans += m
+        res += 1 shl x
+        a -= b shl x
     }
-
-    return ans * sign
+    return if (dividend > 0 == divisor > 0) res else -res
 }
