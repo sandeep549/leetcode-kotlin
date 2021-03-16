@@ -8,7 +8,7 @@ private fun findKthLargest(nums: IntArray, k: Int): Int {
 }
 
 private fun findKthLargest2(nums: IntArray, k: Int): Int {
-    var priorityQueue = PriorityQueue<Int> { i1, i2 -> i1 - i2 }
+    val priorityQueue = PriorityQueue<Int> { i1, i2 -> i1 - i2 }
     for (num in nums) {
         priorityQueue.add(num)
         if (priorityQueue.size > k) priorityQueue.poll()
