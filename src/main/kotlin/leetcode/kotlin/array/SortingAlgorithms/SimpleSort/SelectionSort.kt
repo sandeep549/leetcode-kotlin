@@ -30,6 +30,6 @@ private fun selectionSort(arr: IntArray) {
 }
 
 fun main() {
-    var arr = intArrayOf(64, 25, 12, 22, 11)
+    val arr = intArrayOf(64, 25, 12, 22, 11)
     println(selectionSort(arr))
 }
