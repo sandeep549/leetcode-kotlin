@@ -10,5 +10,5 @@ private fun isUgly(num: Int): Boolean {
     for (i in listOf(2, 3, 5)) {
         while (n % i == 0) n /= i
     }
-    return if (n == 1) true else false
+    return n == 1
 }
