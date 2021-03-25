@@ -3,12 +3,12 @@ package leetcode.kotlin.dp
 // dp, bottom-up
 // Time:O(n^2)
 private fun longestPalindrome(str: String): String {
-    var table = Array<BooleanArray>(str.length) { BooleanArray(str.length) }
+    val table = Array<BooleanArray>(str.length) { BooleanArray(str.length) }
     var max = 0
     var start = 0 // beginning index of max palindrome
     for (k in 1..str.length) { // size of palindrome
         for (i in 0..str.length - k) { // start index
-            var j = i + k - 1
+            val j = i + k - 1
             if (k == 1) { // single length palindrome
                 table[i][j] = true
             } else if (k == 2) {
@@ -25,4 +25,40 @@ private fun longestPalindrome(str: String): String {
         }
     }
     return str.substring(start, start + max)
+}
+
+/**
+ * go to every index
+ * make current index as palindrome center and expand both side, mark max found
+ * make pre and current both as center, expand palindrome, mark max found
+ */
+private fun longestPalindrome2(s: String): String {
+    var left = 0
+    var right = 0
+    for (i in s.indices) {
+        var l = i
+        var r = i
+        while (l >= 0 && r <= s.lastIndex && s[l] == s[r]) {
+            l--
+            r++
+        }
+        if (--r - ++l > right - left) {
+            left = l
+            right = r
+        }
+
+        if (i == 0) continue
+
+        l = i - 1
+        r = i
+        while (l >= 0 && r <= s.lastIndex && s[l] == s[r]) {
+            l--
+            r++
+        }
+        if (--r - ++l > right - left) {
+            left = l
+            right = r
+        }
+    }
+    return s.substring(left, right + 1)
 }
