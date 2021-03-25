@@ -21,6 +21,7 @@ private class LRUCache(capacity: Int) {
         tail.pre = head
     }
 
+    //region internal methods
     private fun addNode(node: DLinkedNode) {
         node.pre = head
         node.next = head.next
@@ -30,8 +31,8 @@ private class LRUCache(capacity: Int) {
     }
 
     private fun removeNode(node: DLinkedNode) {
-        var pre = node.pre
-        var next = node.next
+        val pre = node.pre
+        val next = node.next
 
         pre!!.next = next
         next!!.pre = pre
@@ -43,29 +44,30 @@ private class LRUCache(capacity: Int) {
     }
 
     private fun popTail(): DLinkedNode? {
-        var res = tail.pre
+        val res = tail.pre
         removeNode(res!!)
         return res
     }
+    //endregion
 
+    //region public methods
     fun get(key: Int): Int {
-        var node = cache.get(key)
-        if (node == null) return -1
+        val node = cache[key] ?: return -1
         moveToHead(node)
         return node.value
     }
 
     fun put(key: Int, value: Int) {
-        var node = cache.get(key)
+        val node = cache[key]
         if (node == null) {
-            var new = DLinkedNode()
+            val new = DLinkedNode()
             new.key = key
             new.value = value
-            cache.put(key, new)
+            cache[key] = new
             addNode(new)
             ++count
             if (count > capacity) {
-                var tail = popTail()
+                val tail = popTail()
                 cache.remove(tail!!.key)
                 --count
             }
@@ -74,6 +76,7 @@ private class LRUCache(capacity: Int) {
             moveToHead(node)
         }
     }
+    //endregion
 
     private class DLinkedNode {
         var key = 0
