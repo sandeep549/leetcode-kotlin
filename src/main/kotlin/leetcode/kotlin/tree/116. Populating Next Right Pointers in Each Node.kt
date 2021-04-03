@@ -26,3 +26,17 @@ private class Solution3 {
         return root
     }
 }
+
+private fun connect(root: Node?): Node? {
+    var levelStart = root
+    while (levelStart != null) {
+        var cur = levelStart
+        while (cur != null) {
+            cur.left?.let { it.next = cur?.right }
+            if (cur.right != null && cur.next != null) cur.right?.next = cur.next?.left
+            cur = cur.next
+        }
+        levelStart = levelStart.left
+    }
+    return root
+}
