@@ -1,11 +1,9 @@
 package leetcode.kotlin.tree
 
-import java.util.*
-import kotlin.collections.ArrayList
 
 private fun rightSideView(root: TreeNode?): List<Int> {
-    var list = mutableListOf<Pair<Int, Int>>()
-    var set = mutableSetOf<Int>()
+    val list = mutableListOf<Pair<Int, Int>>()
+    val set = mutableSetOf<Int>()
     fun dfs(root: TreeNode?, level: Int) {
         root?.let {
             dfs(root.right, level + 1)
@@ -22,7 +20,7 @@ private fun rightSideView(root: TreeNode?): List<Int> {
 }
 
 private fun rightSideView2(root: TreeNode?): List<Int> {
-    var list = mutableListOf<Int>()
+    val list = mutableListOf<Int>()
     fun dfs(root: TreeNode?, level: Int) {
         root?.let {
             if (list.size < level) list.add(root.`val`)
@@ -34,18 +32,19 @@ private fun rightSideView2(root: TreeNode?): List<Int> {
     return list
 }
 
-fun rightSideView3(root: TreeNode?): List<Int?>? { // reverse level traversal
-    val result: MutableList<Int?> = ArrayList()
-    val queue: Queue<TreeNode> = LinkedList()
+@ExperimentalStdlibApi
+private fun rightSideView3(root: TreeNode?): List<Int> {// reverse level traversal
+    val result = mutableListOf<Int>()
+    val queue = ArrayDeque<TreeNode>()
     if (root == null) return result
-    queue.offer(root)
+    queue.add(root)
     while (!queue.isEmpty()) {
         val size = queue.size
         for (i in 0 until size) {
-            val cur: TreeNode = queue.poll()
+            val cur: TreeNode = queue.removeFirst()
             if (i == 0) result.add(cur.`val`)
-            if (cur.right != null) queue.offer(cur.right)
-            if (cur.left != null) queue.offer(cur.left)
+            if (cur.right != null) queue.add(cur.right!!)
+            if (cur.left != null) queue.add(cur.left!!)
         }
     }
     return result
