@@ -1,17 +1,23 @@
 package leetcode.kotlin.tree
 
-private fun sumNumbers(root: TreeNode?): Int {
-    var result = 0
-    if (root == null) return result
-    fun dfs(root: TreeNode, no: Int) {
-        val newNo = no * 10 + (root.`val` ?: 0)
-        if (root.left == null && root.right == null) {
-            result += newNo
-            return
-        }
-        root.left?.let { dfs(it, newNo) }
-        root.right?.let { dfs(it, newNo) }
+private class Solution {
+    var ans = "~"
+    fun smallestFromLeaf(root: TreeNode?): String {
+        dfs(root, StringBuilder())
+        return ans
     }
-    dfs(root, 0)
-    return result
+
+    fun dfs(node: TreeNode?, sb: StringBuilder) {
+        if (node == null) return
+        sb.append(('a'.toInt() + node.`val`).toChar())
+        if (node.left == null && node.right == null) {
+            sb.reverse()
+            val S = sb.toString()
+            sb.reverse()
+            if (S.compareTo(ans) < 0) ans = S
+        }
+        dfs(node.left, sb)
+        dfs(node.right, sb)
+        sb.deleteCharAt(sb.length - 1)
+    }
 }
