@@ -1,6 +1,6 @@
 package leetcode.kotlin.array.medium
 
-fun canArrange2(arr: IntArray, k: Int): Boolean {
+private fun canArrange2(arr: IntArray, k: Int): Boolean {
     val set = mutableSetOf<Int>()
     for (i in 0 until arr.lastIndex) {
         if (set.contains(i)) continue
@@ -17,7 +17,7 @@ fun canArrange2(arr: IntArray, k: Int): Boolean {
     return true
 }
 
-fun canArrange(arr: IntArray, k: Int): Boolean {
+private fun canArrange(arr: IntArray, k: Int): Boolean {
     val frequency = IntArray(k)
     for (num in arr) {
         var no = num % k
