@@ -25,3 +25,21 @@ private fun rob2(nums: IntArray): Int {
     )
 }
 
+private class CircularRobbing {
+    fun rob(nums: IntArray): Int {
+        if (nums.size == 1) return nums[0]
+        return maxOf(robinternal(nums, 0, nums.lastIndex - 1), robinternal(nums, 1, nums.lastIndex))
+    }
+
+    private fun robinternal(nums: IntArray, start: Int, end: Int): Int {
+        var sl = 0
+        var l = 0
+        for (i in start..end) {
+            var cur = maxOf(sl + nums[i], l)
+            sl = l
+            l = cur
+        }
+        return l
+    }
+}
+
