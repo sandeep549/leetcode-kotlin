@@ -39,8 +39,24 @@ private class SolutionCoinChange2 {
         return dp[index][amount]
     }
 
-    // Solution-3, dp, bottom up
+    // Solution-4, dp, bottom up, 2d array
     fun change3(amount: Int, coins: IntArray): Int {
+        val dp = Array(coins.size + 1) { IntArray(amount + 1) }
+        dp[0][0] = 1
+        for (j in 1..coins.size) {
+            dp[j][0] = 1
+            for (i in 1..amount) {
+                dp[j][i] = dp[j - 1][i] // i amount using without using jth coins
+                if (i - coins[j - 1] >= 0) {
+                    dp[j][i] += dp[j][i - coins[j - 1]] // Add amount with certainly using jth amount
+                }
+            }
+        }
+        return dp[coins.size][amount]
+    }
+
+    // Solution-4, dp, bottom up, 1d array
+    fun change4(amount: Int, coins: IntArray): Int {
         val dp = IntArray(amount + 1)
         dp[0] = 1
         for (j in coins.indices) {
