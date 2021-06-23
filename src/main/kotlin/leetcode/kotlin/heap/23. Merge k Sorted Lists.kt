@@ -1,5 +1,6 @@
-package leetcode.kotlin.linkedlist
+package leetcode.kotlin.heap
 
+import leetcode.kotlin.linkedlist.ListNode
 import java.util.PriorityQueue
 
 // Upper Bound -> O(N * klogk)
