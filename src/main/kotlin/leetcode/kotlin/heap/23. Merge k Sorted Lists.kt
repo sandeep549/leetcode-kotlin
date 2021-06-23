@@ -1,7 +1,6 @@
 package leetcode.kotlin.linkedlist
 
 import java.util.PriorityQueue
-import kotlin.collections.ArrayList
 
 // Upper Bound -> O(N * klogk)
 // N = no of total node in all lists
@@ -10,14 +9,14 @@ import kotlin.collections.ArrayList
 // it will O(k), as TimSort takes linear time on almost sorted elements. Other factor is list
 // size(k) also will get reducing, coz al list will not have same size.
 private fun mergeKLists(lists: Array<ListNode?>): ListNode? {
-    var ans = ListNode(0)
+    val ans = ListNode(0)
     var curr = ans
-    var currList = ArrayList<ListNode>()
+    val currList = ArrayList<ListNode>()
     lists.forEach { listNode -> listNode?.let { currList.add(listNode) } }
 
     while (currList.size > 0) {
         currList.sortBy { it.`val` }
-        var first = currList.first()
+        val first = currList.first()
         curr.next = first
         curr = first
         if (first.next == null) currList.removeAt(0)
@@ -28,9 +27,9 @@ private fun mergeKLists(lists: Array<ListNode?>): ListNode? {
 
 private fun mergeKLists2(lists: Array<ListNode?>): ListNode? {
     if (lists.isEmpty()) return null
-    var dummyhead = ListNode(0) // dummy node
+    val dummyhead = ListNode(0) // dummy node
     var tail = dummyhead
-    var queue = PriorityQueue<ListNode>(lists.size) { l1, l2 -> l1.`val` - l2.`val` }
+    val queue = PriorityQueue<ListNode>(lists.size) { l1, l2 -> l1.`val` - l2.`val` }
     lists.forEach { it?.let { queue.add(it) } }
     while (!queue.isEmpty()) {
         tail.next = queue.poll()
