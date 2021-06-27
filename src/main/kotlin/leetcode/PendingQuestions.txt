@@ -4,3 +4,5 @@ https://leetcode.com/problems/single-number-ii/
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/description/
 https://leetcode.com/problems/decode-ways/description/
+
+https://leetcode.com/problems/count-of-smaller-numbers-after-self/
