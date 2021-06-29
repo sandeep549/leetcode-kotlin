@@ -1,6 +1,5 @@
 package leetcode.kotlin.tree
 
-
 private fun rightSideView(root: TreeNode?): List<Int> {
     val list = mutableListOf<Pair<Int, Int>>()
     val set = mutableSetOf<Int>()
@@ -32,19 +31,21 @@ private fun rightSideView2(root: TreeNode?): List<Int> {
     return list
 }
 
-@ExperimentalStdlibApi
-private fun rightSideView3(root: TreeNode?): List<Int> {// reverse level traversal
+/*
+ Right to left level traversal
+ */
+private fun rightSideView3(root: TreeNode?): List<Int> { // reverse level traversal
     val result = mutableListOf<Int>()
     val queue = ArrayDeque<TreeNode>()
     if (root == null) return result
     queue.add(root)
-    while (!queue.isEmpty()) {
+    while (queue.isNotEmpty()) {
         val size = queue.size
         for (i in 0 until size) {
-            val cur: TreeNode = queue.removeFirst()
+            val cur = queue.removeFirst()
             if (i == 0) result.add(cur.`val`)
-            if (cur.right != null) queue.add(cur.right!!)
-            if (cur.left != null) queue.add(cur.left!!)
+            cur.right?.let { queue.add(it) }
+            cur.left?.let { queue.add(it) }
         }
     }
     return result

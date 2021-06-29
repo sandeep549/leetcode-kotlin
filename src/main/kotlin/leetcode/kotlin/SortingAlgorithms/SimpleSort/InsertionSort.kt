@@ -1,4 +1,4 @@
-package leetcode.kotlin.array.SortingAlgorithms.SimpleSort
+package leetcode.kotlin.SortingAlgorithms.SimpleSort
 // https://en.wikipedia.org/wiki/Sorting_algorithm
 /*
 Algorithm

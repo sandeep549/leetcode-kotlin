@@ -26,3 +26,4 @@ private fun canJump2(nums: IntArray): Boolean {
     }
     return lastPos == 0
 }
+

@@ -1,4 +1,4 @@
-package leetcode.kotlin.array.easy
+package leetcode.kotlin
 
 import java.util.HashMap
 import java.util.HashSet

@@ -25,3 +25,5 @@ class NTreeNode(var `val`: Int) {
 
     var children: ArrayList<NTreeNode>? = null
 }
+
+

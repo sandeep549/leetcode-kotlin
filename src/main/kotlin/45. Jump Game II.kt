@@ -51,7 +51,7 @@ private class BfsSolution {
         var jumps = 0
         var curEnd = 0
         var curFarthest = 0
-        for (i in nums.indices) {
+        for (i in 0 until nums.lastIndex) {
             curFarthest = maxOf(curFarthest, i + nums[i])
             if (i == curEnd) {
                 jumps++

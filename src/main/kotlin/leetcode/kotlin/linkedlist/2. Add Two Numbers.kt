@@ -18,7 +18,7 @@ private fun addTwoNumbers3(l1: ListNode?, l2: ListNode?): ListNode? {
     return dummy.next
 }
 
-class Solution {
+private class Solution {
     fun ListNode?.value() = this?.`val` ?: 0
     fun ListNode?.nextNode() = this?.next
     fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
@@ -40,7 +40,7 @@ class Solution {
     }
 }
 
-class Solution2 {
+private class Solution2 {
     fun ListNode?.value() = this?.`val` ?: 0
 
     fun addTwoNumbers(l1: ListNode?, l2: ListNode?, carry: Int = 0): ListNode? {
