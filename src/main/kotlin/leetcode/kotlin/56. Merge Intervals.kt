@@ -25,7 +25,7 @@ private fun merge(intervals: Array<IntArray>): Array<IntArray> {
 //endregion
 
 //region-Solution-2
-private class Solution {
+private class Solution2 {
     private var graph = mutableMapOf<IntArray, MutableList<IntArray>>()
     private var nodesInComp = mutableMapOf<Int, MutableList<IntArray>>()
     private var visited = mutableSetOf<IntArray>()

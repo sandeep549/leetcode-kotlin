@@ -2,7 +2,7 @@ package leetcode.kotlin
 
 import java.util.PriorityQueue
 
-private class Solution {
+private class Solution3 {
     class Tuple(var r: Int, var c: Int, var `val`: Int) : Comparable<Tuple?> {
         override fun compareTo(other: Tuple?) = `val` - (other?.`val` ?: 0)
     }
