@@ -3,7 +3,7 @@ package leetcode.kotlin.dp
 // dp, bottom-up
 // Time:O(n^2)
 private fun longestPalindrome(str: String): String {
-    val table = Array<BooleanArray>(str.length) { BooleanArray(str.length) }
+    val table = Array(str.length) { BooleanArray(str.length) }
     var max = 0
     var start = 0 // beginning index of max palindrome
     for (k in 1..str.length) { // size of palindrome
@@ -13,7 +13,7 @@ private fun longestPalindrome(str: String): String {
                 table[i][j] = true
             } else if (k == 2) {
                 if (str[i] == str[j]) table[i][j] = true
-            } else { // for more than 3 length, w'll have middle elements
+            } else { // for more than 3 length, we'll have middle elements
                 if (table[i + 1][j - 1] && str[i] == str[j]) table[i][j] = true
             }
             // we found new bigger palindrome
