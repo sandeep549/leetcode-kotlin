@@ -1,20 +1,21 @@
 package leetcode.kotlin.tree
 
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.ArrayDeque
 
 // TODO check morris traversal also
 
 private fun inorderTraversal(root: TreeNode?): List<Int> {
-    val list = ArrayList<Int>()
-    fun dfs(node: TreeNode?) {
-        if (node == null) return
-        dfs(node.left)
-        list.add(node.`val`)
-        dfs(node.right)
-    }
-    dfs(root)
+    val list = mutableListOf<Int>()
+    helper(root, list)
     return list
+}
+
+private fun helper(root: TreeNode?, list: MutableList<Int>) {
+    if (root != null) {
+        helper(root.left, list)
+        list.add(root.`val`)
+        helper(root.right, list)
+    }
 }
 
 private fun inorderTraversal2(root: TreeNode?): List<Int> {
