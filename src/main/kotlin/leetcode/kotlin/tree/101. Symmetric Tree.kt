@@ -16,7 +16,7 @@ private fun isSymmetric(root: TreeNode?): Boolean {
     return isMirror(root.left, root.right)
 }
 
-// todo: Leetcode supports Kotlin 1.3.10, which doesnt have ArrayDeque yet
+// todo: Leetcode supports Kotlin 1.3.10, which doesn't have ArrayDeque yet
 @ExperimentalStdlibApi
 private fun isSymmetric2(root: TreeNode?): Boolean {
     if (root == null) return true
