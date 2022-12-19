@@ -16,7 +16,7 @@ private fun isPalindrome(s: String): Boolean {
     while (l < r) {
         while (l < r && !s[l].isLetterOrDigit()) l++
         while (l < r && !s[r].isLetterOrDigit()) r--
-        if (s[l].toLowerCase() != s[r].toLowerCase()) return false
+        if (s[l].lowercaseChar() != s[r].lowercaseChar()) return false
         l++
         r--
     }
