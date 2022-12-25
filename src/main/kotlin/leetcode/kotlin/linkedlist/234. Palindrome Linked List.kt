@@ -63,3 +63,42 @@ private fun isPalindrome2(head: ListNode?): Boolean {
     }
     return sum == 0
 }
+
+private fun endOfFirstHalf(head: ListNode): ListNode {
+    var slow = head
+    var fast = head
+    while (fast.next != null && fast.next!!.next != null) {
+        slow = slow.next!!
+        fast = fast.next!!.next!!
+    }
+    return slow
+}
+
+private fun reverse(head: ListNode?): ListNode? {
+    var pre: ListNode? = null
+    var curr: ListNode? = head
+    while (curr != null) {
+        val next = curr.next
+        curr.next = pre
+        pre = curr
+        curr = next
+    }
+    return pre
+}
+
+// todo : Explain this?
+private fun isPalindrome4(head: ListNode?): Boolean {
+    var sum = 0
+    var mul = -1
+    var curr = head
+    while (curr != null) {
+        sum += (2.shl(++mul)) * curr.`val`
+        curr = curr.next
+    }
+    curr = head
+    while (curr != null) {
+        sum -= (2.shl(mul--)) * curr.`val`
+        curr = curr.next
+    }
+    return sum == 0
+}
