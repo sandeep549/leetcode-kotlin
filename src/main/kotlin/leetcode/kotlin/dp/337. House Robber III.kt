@@ -4,19 +4,22 @@ import leetcode.kotlin.tree.TreeNode
 
 private class SolutionHouseRobber {
     fun rob(root: TreeNode?): Int {
-        val answers = internalrob(root)
-        println(answers.toList())
-        return maxOf(answers[0], answers[1])
+        val (withRoot, withoutRoot) = traverse(root)
+        return maxOf(withRoot, withoutRoot)
     }
 
-    private fun internalrob(root: TreeNode?): IntArray {
-        root?.let {
-            val left = internalrob(it.left)
-            val right = internalrob(it.right)
-            val max_including_cur = maxOf(left[1], right[1]) + it.`val`
-            val max_exluding_cur = maxOf(left[0], left[1]) + maxOf(right[0], right[1])
-            return intArrayOf(max_including_cur, max_exluding_cur)
-        }
-        return intArrayOf(0, 0)
+    private fun traverse(node: TreeNode?): Loot {
+        if (node == null) return Loot(0, 0)
+        val left = traverse(node.left)
+        val right = traverse(node.right)
+
+        // when rob current node
+        val withRoot = left.withoutRoot + right.withoutRoot + node.`val`
+        // When don't rob this node
+        val withoutRoot = maxOf(left.withRoot, left.withoutRoot) + maxOf(right.withRoot, right.withoutRoot)
+
+        return Loot(withRoot, withoutRoot)
     }
+
+    data class Loot(val withRoot: Int, val withoutRoot: Int)
 }
