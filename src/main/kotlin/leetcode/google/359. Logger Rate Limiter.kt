@@ -1,15 +1,13 @@
 package leetcode.google
 
-private val messageSet = mutableSetOf<String>()
-private val deque = ArrayDeque<Pair<String, Int>>() // keep last 10 latest messages in time
+private val messageMap = mutableMapOf<String, Int>()
 fun shouldPrintMessage(timestamp: Int, message: String): Boolean {
-    if (messageSet.contains(message)) return false
-    deque.add(Pair(message, timestamp))
-    if (deque.size > 10) {
-        messageSet.remove(deque.first().first)
-        deque.removeFirst()
+    if (!messageMap.containsKey(message) || timestamp - messageMap[message]!! >= 10) {
+        messageMap[message] = timestamp
+        return true
     }
-    return true
+    messageMap.entries.removeIf { timestamp - it.value >= 10}
+    return false
 }
 
 
@@ -22,7 +20,6 @@ private class Logger {
     }
 
     var time = 0
-
 
     fun shouldPrintMessage(timestamp: Int, message: String): Boolean {
         time = timestamp
