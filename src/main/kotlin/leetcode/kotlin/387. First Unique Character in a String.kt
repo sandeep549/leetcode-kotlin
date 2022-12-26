@@ -1,9 +1,9 @@
 package leetcode.kotlin
 
 private fun firstUniqChar(s: String): Int {
-    val seen = s.toCharArray().groupBy { it }.mapValues { it.value.size }
+    val map = s.toList().groupingBy { it }.eachCount()
     s.indices.forEach {
-        if (seen[s[it]] == 1) return it
+        if (map[s[it]] == 1) return it
     }
     return -1
 }
