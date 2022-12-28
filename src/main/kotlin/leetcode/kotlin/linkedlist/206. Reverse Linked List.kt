@@ -15,11 +15,13 @@ private fun reverseList(head: ListNode?): ListNode? {
 
 // recursive implementation
 private fun reverseList2(head: ListNode?): ListNode? {
-    fun recur(newHead: ListNode?, cur: ListNode?): ListNode? {
-        if (cur == null) return newHead
-        var next = cur.next
-        cur.next = newHead
-        return recur(cur, next)
-    }
+
     return recur(null, head)
+}
+
+private fun recur(newHead: ListNode?, cur: ListNode?): ListNode? {
+    if (cur == null) return newHead
+    val next = cur.next
+    cur.next = newHead
+    return recur(cur, next)
 }
