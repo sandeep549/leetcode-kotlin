@@ -4,6 +4,10 @@ import leetcode.kotlin.tree.TreeNode
 
 private class SolutionHouseRobber {
     fun rob(root: TreeNode?): Int {
+        val list1 = listOf(1, 2, 3)
+        val list2 = listOf(4, 5, 6)
+        (list1 + list2).sortedBy { it }
+
         val (withRoot, withoutRoot) = traverse(root)
         return maxOf(withRoot, withoutRoot)
     }
