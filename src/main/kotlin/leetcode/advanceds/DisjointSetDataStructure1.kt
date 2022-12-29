@@ -2,6 +2,7 @@ package leetcode.advanceds
 
 // https://en.wikipedia.org/wiki/Disjoint-set_data_structure
 // https://www.techiedelight.com/disjoint-set-data-structure-union-find-algorithm/
+//https://www.geeksforgeeks.org/introduction-to-disjoint-set-data-structure-or-union-find-algorithm/
 
 /**
  * Problem Statement: We have some number of items. We are allowed to merge any two items to consider them equal.
@@ -9,52 +10,62 @@ package leetcode.advanceds
  */
 
 private class DisjointSet {
-    private var parent = mutableMapOf<Int, Int>()
+
+    private var parentMap = mutableMapOf<Int, Int>()
     private var rank = mutableMapOf<Int, Int>()
 
     // perform MakeSet operation
     fun makeSet(x: Int) {
-        parent.put(x, x) // create new disjoint set point to itself
-        rank.put(x, 0)
+        parentMap[x] = x // create new disjoint set point to itself
+        rank[x] = 0
     }
 
     // find root/representative of disjoint set to which x belongs
     fun find(x: Int): Int {
-        if (parent.get(x) != x) {
-            parent.put(x, find(parent.get(x)!!)) // path compression
+        // find root of this disjoint set
+        var root = x
+        while (parentMap[root] != root) {
+            root = parentMap[root]!!
         }
-        return parent.get(x)!!
+
+        // path compression
+        var i = x
+        while (parentMap[i] != root) {
+            val next = parentMap[i]!!
+            parentMap[i] = root   // path compression
+            i = next
+        }
+
+        return parentMap[x]!!
     }
 
     // perform union of two disjoint sets
     fun union(x: Int, y: Int) {
-        var a = find(x)
-        var b = find(y)
+        println("Union $x and $y")
+        val a = find(x)
+        val b = find(y)
         if (a == b) return // if already in same set
 
         // perform union by rank
         // attach smaller depth tree under the root of deeper tree
-        if (rank.get(x)!! < rank.get(y)!!)
-            parent.put(y, x)
-        else if (rank.get(x)!! > rank.get(y)!!)
-            parent.put(x, y)
+        if (rank[x]!! < rank[y]!!)
+            parentMap[x] = y
+        else if (rank[x]!! > rank[y]!!)
+            parentMap[y] = x
         else {
-            parent.put(x, y)
-            rank.put(y, rank.get(y)!! + 1)
+            parentMap[x] = y
+            rank[y] = rank[y]!! + 1
         }
     }
 
     // helper function to print all disjoints sets, i.e. print all representatives
     fun printDisjointSets() {
-        parent.forEach {
-            if (it.key == it.value) print(it.key)
-        }
-        println()
+        parentMap.entries.groupBy { it.value }.toList().let { println(it) }
     }
 }
 
 fun main() {
-    var dj = DisjointSet()
+    val dj = DisjointSet()
     dj.makeSet(1)
     dj.makeSet(2)
     dj.makeSet(3)
