@@ -83,27 +83,28 @@ private fun dfs(graph: Map<Int, MutableList<Int>>, seen: BooleanArray, index: In
 
 fun maximumDetonation3(bombs: Array<IntArray>): Int {
     var max = 0
-    for (i in bombs.indices) {
-        max = maxOf(max, bfs(bombs, i))
+    val queue: Queue<Int> = LinkedList()
+    var seen: BooleanArray
+
+    for (index in bombs.indices) {
+        seen = BooleanArray(bombs.size)
+        seen[index] = true
+        queue.offer(index)
+
+        var maxHere = 1 // start from 1 since the first added bomb can detonate itself
+        while (!queue.isEmpty()) {
+            val currBomb = queue.poll()
+            for (j in bombs.indices) { //search for bombs to detonate
+                if (!seen[j] && isInRange(bombs[currBomb], bombs[j])) {
+                    seen[j] = true
+                    maxHere++
+                    queue.offer(j)
+                }
+            }
+        }
+        max = maxOf(max, maxHere)
     }
+
     return max
 }
 
-private fun bfs(bombs: Array<IntArray>, index: Int): Int {
-    val queue: Queue<Int> = LinkedList()
-    val seen = BooleanArray(bombs.size)
-    seen[index] = true
-    queue.offer(index)
-    var count = 1 // start from 1 since the first added bomb can detonate itself
-    while (!queue.isEmpty()) {
-        val currBomb = queue.poll()
-        for (j in bombs.indices) { //search for bombs to detonate
-            if (!seen[j] && isInRange(bombs[currBomb], bombs[j])) {
-                seen[j] = true
-                count++
-                queue.offer(j)
-            }
-        }
-    }
-    return count
-}
