@@ -85,3 +85,47 @@ private class LRUCache(capacity: Int) {
         var next: DLinkedNode? = null
     }
 }
+
+//#############################################################################################
+class LRUCache146(val capacity: Int) {
+
+    val cache = LinkedHashMap<Int, Int>()
+
+    fun get(key: Int): Int {
+        val v = cache[key] ?: return -1
+        // Move position in cache
+        cache.remove(key)
+        cache[key] = v
+        return v
+    }
+
+    fun put(key: Int, value: Int) {
+        // Remove to update position if exists
+        if (cache.containsKey(key)) {
+            cache.remove(key)
+        }
+        cache[key] = value
+
+        // Evicts old item if size exceeds
+        if (cache.size > capacity) cache.remove(cache.entries.first().key)
+    }
+
+}
+
+//#############################################################################################
+
+class LRUCache146_2(private val capacity: Int) : LinkedHashMap<Int, Int>(capacity, 0.75f, true) {
+    override fun get(key: Int): Int {
+        return super.getOrDefault(key, -1)
+    }
+
+    override fun put(key: Int, value: Int): Int? {
+        return super.put(key, value)
+    }
+
+    override fun removeEldestEntry(eldest: Map.Entry<Int?, Int?>?): Boolean {
+        return size > capacity
+    }
+}
+
+//#############################################################################################
