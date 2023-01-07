@@ -2,14 +2,16 @@ package topicWise.greedy
 
 private fun canCompleteCircuit(gas: IntArray, cost: IntArray): Int {
     var start = 0
-    while (start < gas.size) {
+    while (start < gas.size) { // Try with every start point
         var i = start
-        var cur_gas = gas[start]
-        while (i < start + gas.size) {
+        var g = gas[start]
+        while (true) {
             i %= gas.size
-            if (cur_gas < cost[i]) break
-            cur_gas = cur_gas - cost[i] + gas[(++i) % gas.size]
-            if (i % gas.size == start) return start
+            if (g < cost[i]) break // can not reach next station
+            g -= cost[i] // Pay the gas
+            i++ // Go to next station
+            g += gas[i % gas.size] // Take the gas from this station
+            if (i % gas.size == start) return start // reached start point?
         }
         start++
     }
