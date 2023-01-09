@@ -1,4 +1,4 @@
-package leetcode.kotlin.z_ImportantCodeSnippet
+package z_ImportantCodeSnippet
 
 private fun listInKotlin() {
     // 1

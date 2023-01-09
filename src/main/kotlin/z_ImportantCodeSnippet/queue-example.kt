@@ -1,4 +1,4 @@
-package leetcode.kotlin.z_ImportantCodeSnippet
+package z_ImportantCodeSnippet
 
 import java.util.ArrayDeque
 import java.util.Deque

@@ -1,6 +1,6 @@
-package leetcode.kotlin.z_ImportantCodeSnippet
+package z_ImportantCodeSnippet
 
-import leetcode.kotlin.tree.TreeNode
+import topicWise.tree.TreeNode
 import java.util.ArrayDeque
 
 private fun preorderTraversal2(root: TreeNode?): List<Int> {
