@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 private fun rightSideView(root: TreeNode?): List<Int> {
     val list = mutableListOf<Pair<Int, Int>>()
     val set = mutableSetOf<Int>()

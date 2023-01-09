@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 private fun buildTree(inorder: IntArray, postorder: IntArray): TreeNode? {
     var i = postorder.lastIndex // track root in post-order
     fun dfs(l: Int, r: Int): TreeNode? {

@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 private fun longestUnivaluePath(root: TreeNode?): Int {
     var maxSoFar = 0
 

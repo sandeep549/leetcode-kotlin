@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 // use of global k is discouraged??
 private fun kthSmallest(root: TreeNode?, k: Int): Int {
     var k = k

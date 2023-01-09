@@ -1,5 +1,6 @@
 package topicWise.tree
 
+import model.TreeNode
 import java.util.ArrayDeque
 
 private fun findMode(root: TreeNode?): IntArray {

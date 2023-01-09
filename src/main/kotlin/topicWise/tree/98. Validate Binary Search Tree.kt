@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 private fun isValidBST2(root: TreeNode?): Boolean {
     fun dfs(node: TreeNode?, l: Int?, r: Int?): Boolean {
         node ?: return true

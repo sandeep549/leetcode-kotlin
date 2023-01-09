@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 private fun minDepth(root: TreeNode?): Int {
     if (root == null) return 0
     val l = minDepth(root.left)

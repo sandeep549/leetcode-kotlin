@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 private fun isCousins(root: TreeNode?, x: Int, y: Int): Boolean {
     var res = false
     fun dfs(root: TreeNode?): Int { // return depth of any target found first

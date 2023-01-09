@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 private class Solution {
     var ans = "~"
     fun smallestFromLeaf(root: TreeNode?): String {

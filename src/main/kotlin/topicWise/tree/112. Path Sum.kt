@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 private fun hasPathSum(root: TreeNode?, targetSum: Int): Boolean {
     var ans = false
     fun dfs(node: TreeNode, sum: Int) {

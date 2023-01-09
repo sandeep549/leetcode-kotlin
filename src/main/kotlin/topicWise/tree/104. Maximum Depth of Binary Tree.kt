@@ -1,5 +1,6 @@
 package topicWise.tree
 
+import model.TreeNode
 import kotlin.math.max
 
 private fun maxDepth(root: TreeNode?): Int {

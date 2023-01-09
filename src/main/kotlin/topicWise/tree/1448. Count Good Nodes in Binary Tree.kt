@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 private fun goodNodes(root: TreeNode?): Int {
     val list = dfs(root)
     return list.size

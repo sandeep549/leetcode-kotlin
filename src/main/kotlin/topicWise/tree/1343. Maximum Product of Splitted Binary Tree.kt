@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 private fun maxProduct(root: TreeNode?): Int {
     var total: Long = 0
     var max: Long = 0

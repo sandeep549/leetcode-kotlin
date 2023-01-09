@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 private fun minDiffInBST(root: TreeNode?): Int {
     var last: Int? = null
     var min = Int.MAX_VALUE

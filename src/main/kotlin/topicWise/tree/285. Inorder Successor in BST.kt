@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 // solution not verified, as env. not available
 private fun inorderSuccessor(root: TreeNode?, p: TreeNode): TreeNode? {
     var seen = false

@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 // not tested, please re-test it
 private fun averageOfLevels(root: TreeNode?): DoubleArray {
     var list = ArrayList<Pair<Int, Double>>()

@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 private fun pathSum(root: TreeNode?, targetSum: Int): List<List<Int>> {
     val res = mutableListOf<MutableList<Int>>()
     fun dfs(root: TreeNode?, path: MutableList<Int>, sum: Int) {

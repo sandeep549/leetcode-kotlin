@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.NTreeNode
+
 @ExperimentalStdlibApi
 private fun levelOrder(root: NTreeNode?): List<List<Int>> {
     val ans = mutableListOf<MutableList<Int>>()

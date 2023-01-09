@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 @ExperimentalStdlibApi
 private fun zigzagLevelOrder(root: TreeNode?): List<List<Int>> {
     val res = mutableListOf<MutableList<Int>>()

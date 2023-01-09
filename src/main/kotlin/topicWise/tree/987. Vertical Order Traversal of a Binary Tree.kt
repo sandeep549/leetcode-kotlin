@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 class Point(var x: Int, var y: Int, var `val`: Int)
 
 private fun verticalTraversal(root: TreeNode?): List<List<Int>> {

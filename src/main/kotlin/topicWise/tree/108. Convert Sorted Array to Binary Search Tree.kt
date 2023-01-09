@@ -1,5 +1,7 @@
 package topicWise.tree
 
+import model.TreeNode
+
 private fun sortedArrayToBST(nums: IntArray): TreeNode? {
     fun makeRoot(l: Int, r: Int): TreeNode? {
         if (l > r) return null
