@@ -4,24 +4,17 @@ import model.TreeNode
 import java.util.ArrayDeque
 
 private fun preorderTraversal2(root: TreeNode?): List<Int> {
-    val stack: ArrayDeque<TreeNode> = ArrayDeque()
-    val output: MutableList<Int> = ArrayList()
-    if (root == null) {
-        return output
+    val list = mutableListOf<Int>()
+    if(root == null) return list
+    val s = ArrayDeque<TreeNode>()
+    s.push(root)
+    while(s.isNotEmpty()) {
+        val node = s.pop()
+        list.add(node.`val`)
+        node.right?.let { s.push(it) }
+        node.left?.let { s.push(it) }
     }
-
-    stack.add(root)
-    while (!stack.isEmpty()) {
-        val node: TreeNode = stack.pollLast()
-        output.add(node.`val`)
-        if (node.right != null) {
-            stack.add(node.right)
-        }
-        if (node.left != null) {
-            stack.add(node.left)
-        }
-    }
-    return output
+    return list
 }
 
 private fun inorderTraversal2(root: TreeNode?): List<Int> {
