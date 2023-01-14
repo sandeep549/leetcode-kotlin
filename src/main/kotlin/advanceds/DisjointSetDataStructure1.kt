@@ -1,4 +1,4 @@
-package leetcode.advanceds
+package advanceds
 
 // https://en.wikipedia.org/wiki/Disjoint-set_data_structure
 // https://www.techiedelight.com/disjoint-set-data-structure-union-find-algorithm/

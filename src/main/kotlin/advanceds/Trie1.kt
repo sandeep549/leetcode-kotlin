@@ -1,4 +1,4 @@
-package leetcode.advanceds
+package advanceds
 
 /**
  * A sample Trie to store only lower case alphabets.

@@ -1,4 +1,4 @@
-package leetcode.advanceds
+package advanceds
 
 private class Trie2 {
     private class TrieNode {
