@@ -10,38 +10,25 @@ package advanceds
  */
 
 private class DisjointSet {
-
-    private var parentMap = mutableMapOf<Int, Int>()
+    private var parent = mutableMapOf<Int, Int>()
     private var rank = mutableMapOf<Int, Int>()
 
     // perform MakeSet operation
     fun makeSet(x: Int) {
-        parentMap[x] = x // create new disjoint set point to itself
+        parent[x] = x // create new disjoint set point to itself
         rank[x] = 0
     }
 
     // find root/representative of disjoint set to which x belongs
     fun find(x: Int): Int {
-        // find root of this disjoint set
-        var root = x
-        while (parentMap[root] != root) {
-            root = parentMap[root]!!
+        if (parent[x] != x) {
+            parent[x] = find(parent[x]!!) // path compression
         }
-
-        // path compression
-        var i = x
-        while (parentMap[i] != root) {
-            val next = parentMap[i]!!
-            parentMap[i] = root   // path compression
-            i = next
-        }
-
-        return parentMap[x]!!
+        return parent[x]!!
     }
 
     // perform union of two disjoint sets
     fun union(x: Int, y: Int) {
-        println("Union $x and $y")
         val a = find(x)
         val b = find(y)
         if (a == b) return // if already in same set
@@ -49,18 +36,21 @@ private class DisjointSet {
         // perform union by rank
         // attach smaller depth tree under the root of deeper tree
         if (rank[x]!! < rank[y]!!)
-            parentMap[x] = y
+            parent[y] = x
         else if (rank[x]!! > rank[y]!!)
-            parentMap[y] = x
+            parent[x] = y
         else {
-            parentMap[x] = y
+            parent.put(x, y)
             rank[y] = rank[y]!! + 1
         }
     }
 
     // helper function to print all disjoints sets, i.e. print all representatives
     fun printDisjointSets() {
-        parentMap.entries.groupBy { it.value }.toList().let { println(it) }
+        parent.forEach {
+            if (it.key == it.value) print(it.key)
+        }
+        println()
     }
 }
 
