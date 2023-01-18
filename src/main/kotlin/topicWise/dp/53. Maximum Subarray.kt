@@ -1,29 +1,26 @@
 package topicWise.dp
 
 /**
- * f(n) - Maximum sum ending at index n
- * maxSoFar - Max sum found so far
- * Relation:
- * f(n) = MAX(f(n-1) + arr[n], arr[n]])
- * For every iteration update maxSoFar found, and at last return it.
+ * At any index i there are 3 possibilities,
+ * (1) Max sub-array is found before i.e. maxSoFar
+ * (2) Max sub-array is running and also include this element i.e. maxEndingHere
+ * (3) Max sub-array start here and may contains only this element
  */
 
 // Top-down approach using memoization
 // StackOverflowError for big size array, but works for smaller array size
 
 private class Solution {
-    var maxSoFar = 0
     fun maxSubArray(arr: IntArray): Int {
-        maxSoFar = arr[arr.lastIndex]
-        maxEndingAt(arr.lastIndex, arr)
-        return maxSoFar
+        return maxEndingAt(arr.lastIndex, arr).second
     }
 
-    private fun maxEndingAt(n: Int, arr: IntArray): Int {
-        if (n < 0) return 0
-        val maxHere = maxOf(maxEndingAt(n - 1, arr) + arr[n], arr[n])
-        maxSoFar = maxOf(maxSoFar, maxHere)
-        return maxHere
+    private fun maxEndingAt(n: Int, arr: IntArray): Pair<Int, Int> {
+        if (n == 0) return Pair(arr[0], arr[0])
+        val mx = maxEndingAt(n - 1, arr)
+        val maxHere = maxOf(mx.first + arr[n], arr[n])
+        val maxSoFar = maxOf(mx.second, maxHere)
+        return Pair(maxHere, maxSoFar)
     }
 }
 
