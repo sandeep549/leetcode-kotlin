@@ -1,4 +1,4 @@
-package advanceds
+package com.sk.advanceds
 
 /**
  * A sample Trie to store only lower case alphabets.

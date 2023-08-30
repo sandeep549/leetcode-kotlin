@@ -1,4 +1,4 @@
-package advanceds
+package com.sk.advanceds
 
 private class Trie2 {
     private class TrieNode {
