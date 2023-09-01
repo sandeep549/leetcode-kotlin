@@ -7,7 +7,6 @@ private class Solution {
         while (r < nums.size) {
             if (nums[r] == nums[l]) {
                 r++
-                continue
             } else {
                 l++
                 nums[l] = nums[r]
