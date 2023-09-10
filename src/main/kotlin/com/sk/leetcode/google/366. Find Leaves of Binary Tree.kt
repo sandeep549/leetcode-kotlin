@@ -1,6 +1,6 @@
 package com.sk.leetcode.google
 
-import leetcode.kotlin.tree.TreeNode
+import com.sk.topicWise.tree.TreeNode
 
 private fun findLeaves(root: TreeNode?): List<List<Int>> {
     val map = sortedMapOf<Int, MutableList<Int>>(comparator = Comparator { t1, t2 -> t2-t1 })

@@ -1,6 +1,6 @@
 package com.sk.leetcode.google
 
-import leetcode.kotlin.tree.TreeNode
+import com.sk.topicWise.tree.TreeNode
 
 fun getDirections(
     root: TreeNode?,

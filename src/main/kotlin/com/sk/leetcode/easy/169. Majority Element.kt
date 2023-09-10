@@ -36,3 +36,4 @@ private fun majorityElement2(nums: IntArray): Int {
     return nums[nums.size / 2]
 }
 
+

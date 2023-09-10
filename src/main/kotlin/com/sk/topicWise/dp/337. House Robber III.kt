@@ -1,6 +1,6 @@
 package com.sk.topicWise.dp
 
-import leetcode.kotlin.tree.TreeNode
+import com.sk.topicWise.tree.TreeNode
 
 private class SolutionHouseRobber {
     fun rob(root: TreeNode?): Int {

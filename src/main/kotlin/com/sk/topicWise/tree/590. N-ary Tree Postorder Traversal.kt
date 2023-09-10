@@ -1,6 +1,6 @@
 package com.sk.topicWise.tree
 
-import model.NTreeNode
+import com.sk.model.NTreeNode
 import java.util.ArrayList
 import java.util.Stack
 

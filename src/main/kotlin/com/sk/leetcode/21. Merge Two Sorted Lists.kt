@@ -1,6 +1,6 @@
 package com.sk.leetcode
 
-import leetcode.kotlin.linkedlist.ListNode
+import com.sk.topicWise.linkedlist.ListNode
 
 private class Solution {
     fun mergeTwoLists(l1: ListNode?, l2: ListNode?): ListNode? {

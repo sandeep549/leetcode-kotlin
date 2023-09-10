@@ -1,6 +1,6 @@
 package com.sk.topicWise.heap
 
-import leetcode.kotlin.linkedlist.ListNode
+import com.sk.topicWise.linkedlist.ListNode
 import java.util.PriorityQueue
 
 // Upper Bound -> O(N * klogk)

@@ -1,7 +1,5 @@
 package com.sk.topicWise.tree
 
-import model.TreeNode
-
 private fun btreeGameWinningMove(root: TreeNode?, n: Int, x: Int): Boolean {
     var leftCount = 0
     var rightCount = 0

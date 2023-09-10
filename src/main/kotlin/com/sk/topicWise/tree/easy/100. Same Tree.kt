@@ -1,6 +1,6 @@
 package com.sk.topicWise.tree.easy
 
-import java.util.ArrayDeque
+import com.sk.topicWise.tree.TreeNode
 
 class Solution100_1 {
     fun isSameTree(p: TreeNode?, q: TreeNode?): Boolean {

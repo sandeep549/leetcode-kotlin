@@ -1,6 +1,5 @@
 package com.sk.topicWise.tree
 
-import model.TreeNode
 import java.util.LinkedList
 
 class Solution236_1 {

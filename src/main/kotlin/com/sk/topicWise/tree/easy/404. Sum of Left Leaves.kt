@@ -1,6 +1,6 @@
 package com.sk.topicWise.tree.easy
 
-import leetcode.kotlin.tree.TreeNode
+import com.sk.topicWise.tree.TreeNode
 
 private fun sumOfLeftLeaves(root: TreeNode?): Int {
     var sum = 0

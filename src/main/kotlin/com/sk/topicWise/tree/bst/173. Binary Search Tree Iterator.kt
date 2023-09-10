@@ -1,6 +1,6 @@
 package com.sk.topicWise.tree.bst
 
-import leetcode.kotlin.tree.TreeNode
+import com.sk.topicWise.tree.TreeNode
 import java.util.ArrayDeque
 
 private class BSTIterator(root: TreeNode?) {

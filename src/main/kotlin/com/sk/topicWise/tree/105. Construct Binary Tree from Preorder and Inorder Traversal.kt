@@ -1,7 +1,5 @@
 package com.sk.topicWise.tree
 
-import model.TreeNode
-
 /**
  * 1. traverse in preorder from left to right and pick one element e1.
  * 2. find this element e1's location in inorder, divide inorder in two parts being e1 as pivot.

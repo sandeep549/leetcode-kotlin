@@ -1,6 +1,6 @@
 package com.sk.z_ImportantCodeSnippet
 
-import model.TreeNode
+import com.sk.topicWise.tree.TreeNode
 import java.util.ArrayDeque
 
 private fun preorderTraversal2(root: TreeNode?): List<Int> {

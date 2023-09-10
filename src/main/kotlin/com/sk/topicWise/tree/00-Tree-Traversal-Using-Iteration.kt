@@ -1,7 +1,5 @@
 package com.sk.topicWise.tree
 
-import model.TreeNode
-
 /*
     Tree traversal using iterations.
  */

@@ -1,7 +1,5 @@
 package com.sk.topicWise.tree
 
-import model.TreeNode
-
 private fun binaryTreePaths(root: TreeNode?): List<String> {
     val res = mutableListOf<String>()
     fun dfs(root: TreeNode?, path: StringBuilder) {

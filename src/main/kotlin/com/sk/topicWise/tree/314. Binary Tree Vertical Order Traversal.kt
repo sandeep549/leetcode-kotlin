@@ -1,6 +1,5 @@
 package com.sk.topicWise.tree
 
-import model.TreeNode
 import java.util.*
 
 private fun verticalOrder(root: TreeNode?): List<List<Int>> {

@@ -1,5 +1,7 @@
 package com.sk.topicWise.tree.easy
 
+import com.sk.topicWise.tree.TreeNode
+
 @ExperimentalStdlibApi
 private fun findSecondMinimumValue(root: TreeNode?): Int {
     if (root == null) return -1

@@ -1,7 +1,5 @@
 package com.sk.topicWise.tree
 
-import model.TreeNode
-
 private fun findSecondMinimumValue(root: TreeNode?): Int {
     var ans = ArrayList<Int>()
     fun dfs(root: TreeNode?) {

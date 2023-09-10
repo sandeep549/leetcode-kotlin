@@ -1,6 +1,6 @@
 package com.sk.topicWise.tree.bst
 
-import leetcode.kotlin.tree.TreeNode
+import com.sk.topicWise.tree.TreeNode
 
 private fun lowestCommonAncestor(root: TreeNode?, p: TreeNode?, q: TreeNode?): TreeNode? {
     if (root == null) return root

@@ -1,6 +1,5 @@
 package com.sk.topicWise.tree
 
-import model.TreeNode
 import java.util.Stack
 
 private fun rangeSumBST(root: TreeNode?, low: Int, high: Int): Int {

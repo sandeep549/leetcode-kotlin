@@ -1,5 +1,7 @@
 package com.sk.topicWise.tree.easy
 
+import com.sk.topicWise.tree.TreeNode
+
 private fun pathSum(root: TreeNode?, sum: Int): Int {
     var ans = 0
     fun dfs(root: TreeNode?): MutableList<ArrayList<Int>> {
@@ -38,9 +40,9 @@ private fun pathSum(root: TreeNode?, sum: Int): Int {
     return ans
 }
 
-private fun pathSum2(root: leetcode.kotlin.tree.TreeNode?, sum: Int): Int {
+private fun pathSum2(root: TreeNode?, sum: Int): Int {
     var count = 0
-    fun dfs(root: leetcode.kotlin.tree.TreeNode?, paths: MutableList<Int>) {
+    fun dfs(root: TreeNode?, paths: MutableList<Int>) {
         root?.let {
             for (i in paths.indices) paths[i] += it.`val`
             paths.add(it.`val`)

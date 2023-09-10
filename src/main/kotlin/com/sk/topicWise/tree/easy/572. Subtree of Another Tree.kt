@@ -1,5 +1,7 @@
 package com.sk.topicWise.tree.easy
 
+import com.sk.topicWise.tree.TreeNode
+
 private fun isSubtree(s: TreeNode?, t: TreeNode?): Boolean {
     fun isSame(s: TreeNode?, t: TreeNode?): Boolean {
         if (s == null && t == null) return true

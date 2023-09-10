@@ -1,7 +1,5 @@
 package com.sk.topicWise.tree
 
-import model.TreeNode
-
 /**
  * Traverse the tree and while backtrack, maintain mas_so_far at every node, return max passing through
  * current node. We need to return values for first 3 cases from below, 4th case will be considered

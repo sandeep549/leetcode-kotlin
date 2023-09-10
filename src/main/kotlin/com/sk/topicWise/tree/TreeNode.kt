@@ -1,4 +1,4 @@
-package com.sk.model
+package com.sk.topicWise.tree
 
 /**
  * Binary tree node
