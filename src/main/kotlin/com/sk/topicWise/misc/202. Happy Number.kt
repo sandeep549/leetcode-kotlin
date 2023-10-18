@@ -14,14 +14,14 @@ private fun isHappy(n: Int): Boolean {
             next(fast)
         )
     } while (slow != fast)
-    return if (slow == 1) true else false
+    return slow == 1
 }
 
 private fun next(n: Int): Int {
     var s = 0
     var num = n
     while (num != 0) {
-        var i = num % 10
+        val i = num % 10
         s += (i * i)
         num /= 10
     }
