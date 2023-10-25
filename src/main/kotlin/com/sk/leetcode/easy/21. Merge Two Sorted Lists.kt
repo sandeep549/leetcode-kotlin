@@ -1,8 +1,8 @@
-package com.sk.leetcode
+package com.sk.leetcode.easy
 
 import com.sk.topicWise.linkedlist.ListNode
 
-private class Solution {
+class Solution21 {
     fun mergeTwoLists(l1: ListNode?, l2: ListNode?): ListNode? {
         var list1 = l1
         var list2 = l2
