@@ -19,8 +19,8 @@ private fun hasCycle2(head: ListNode?): Boolean {
     var slow = head
     var fast = head.next
     while (fast?.next != null && slow != fast) {
-        slow = slow!!.next
-        fast = fast.next!!.next
+        slow = slow?.next
+        fast = fast.next?.next
     }
     return slow == fast
 }
