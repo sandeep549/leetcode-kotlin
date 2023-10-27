@@ -12,7 +12,6 @@ class Solution35 {
                 r = m
             }
         }
-        if (target <= nums[l]) return l
-        else return l + 1
+        return if (target <= nums[l]) l else l + 1
     }
 }
