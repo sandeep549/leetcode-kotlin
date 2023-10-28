@@ -1,16 +1,23 @@
 package com.sk.leetcode.kotlin
 
-private fun isPalindrome(x: Int): Boolean {
-    return x.toString() == x.toString().reversed()
+class Solution9 {
+    fun isPalindrome(x: Int): Boolean {
+        return x.toString() == x.toString().reversed()
+    }
+
+    fun isPalindrome2(x: Int): Boolean {
+        var n = x
+        if (n < 0) return false
+        var rev = 0
+        while (n > 0) {
+            rev = rev * 10 + n % 10
+            n /= 10
+        }
+        return x == rev
+    }
 }
 
-private fun isPalindrome2(x: Int): Boolean {
-    var x = x
-    if (x < 0 || x != 0 && x % 10 == 0) return false
-    var rev = 0
-    while (x > rev) {
-        rev = rev * 10 + x % 10
-        x /= 10
-    }
-    return x == rev || x == rev / 10
+fun main() {
+    val s = Solution9()
+    println(s.isPalindrome2(121))
 }
