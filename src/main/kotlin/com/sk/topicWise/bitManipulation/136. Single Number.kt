@@ -1,9 +1,11 @@
 package com.sk.topicWise.bitManipulation
 
-private fun findNumber(nums: IntArray): Int {
-    var ans = 0
-    for (a in nums) {
-        ans = ans.xor(a)
+class Solution136 {
+    fun findNumber(nums: IntArray): Int {
+        var ans = 0
+        for (n in nums) {
+            ans = ans xor n
+        }
+        return ans
     }
-    return ans
 }
