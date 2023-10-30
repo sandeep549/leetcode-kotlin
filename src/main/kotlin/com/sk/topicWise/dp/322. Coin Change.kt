@@ -6,6 +6,38 @@ package com.sk.topicWise.dp
  *  where  0 <= i < size and arr[i] <= n
  */
 
+class Solution322 {
+    // dp, bottom-up
+    fun coinChange(coins: IntArray, amount: Int): Int {
+        if (amount == 0) return 0
+        val dp = IntArray(amount + 1) { -1 }
+        for (i in 1..amount) {
+            var minCoins = Int.MAX_VALUE
+            for (j in coins.indices) {
+                if (i == coins[j]) {
+                    minCoins = 1
+                    break
+                }
+                if (i - coins[j] < 0) continue
+                if (dp[i - coins[j]] == -1) continue
+
+                minCoins = minOf(minCoins, dp[i - coins[j]] + 1)
+            }
+            if (minCoins != Int.MAX_VALUE) {
+                dp[i] = minCoins
+            }
+        }
+        return dp[amount]
+    }
+}
+
+fun main() {
+    val s = Solution322()
+    s.coinChange(intArrayOf(1, 2, 5), 11)
+}
+
+// todo: Fix below soltions later
+
 private class SolutionCoinChange {
 
     // Solution-1, simple recursive
