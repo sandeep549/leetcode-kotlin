@@ -1,5 +1,26 @@
 package com.sk.topicWise.dp
 
+class Solution139 {
+
+    // dp, bottom-up
+    fun wordBreak(s: String, wordDict: List<String>): Boolean {
+        val dp = BooleanArray(s.length)
+        val dict = wordDict.toSet()
+        for (i in s.indices) {
+            for (j in i downTo 0) {
+                //val part1 = s.substring(0, j+1)
+                val part2 = s.substring(j, i + 1)
+                if ((j - 1 < 0 || dp[j - 1]) && dict.contains(part2)) {
+                    dp[i] = true
+                    break
+                }
+            }
+        }
+        return dp[s.lastIndex]
+    }
+}
+
+
 // Recursion, time limit exceeded
 private fun wordBreak(s: String, wordDict: List<String>): Boolean {
     var set = wordDict.toSet()
