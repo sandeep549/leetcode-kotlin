@@ -1,4 +1,4 @@
-package com.sk.leetcode.easy
+package com.sk.topicWise
 
 private class Solution {
     fun removeDuplicates(nums: IntArray): Int {

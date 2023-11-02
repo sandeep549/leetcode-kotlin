@@ -1,4 +1,4 @@
-package com.sk.leetcode.easy
+package com.sk.topicWise
 
 class Solution27 {
     fun removeElement(nums: IntArray, `val`: Int): Int {

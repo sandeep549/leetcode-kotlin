@@ -1,4 +1,4 @@
-package com.sk.leetcode.easy
+package com.sk.topicWise
 
 import com.sk.topicWise.linkedlist.ListNode
 

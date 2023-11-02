@@ -1,4 +1,4 @@
-package com.sk.leetcode.easy
+package com.sk.topicWise
 
 class Solution219 {
     fun containsNearbyDuplicate(nums: IntArray, k: Int): Boolean {

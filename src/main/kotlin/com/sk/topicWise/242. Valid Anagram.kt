@@ -1,4 +1,4 @@
-package com.sk.leetcode.easy
+package com.sk.topicWise
 
 class Solution242 {
     fun isAnagram(s: String, t: String): Boolean {

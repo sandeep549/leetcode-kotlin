@@ -1,4 +1,4 @@
-package com.sk.leetcode.easy
+package com.sk.topicWise
 
 class Solution125 {
     fun isPalindrome(s: String): Boolean {

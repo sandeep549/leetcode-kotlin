@@ -1,4 +1,4 @@
-package com.sk.leetcode.easy
+package com.sk.topicWise
 
 class Solution228 {
     fun summaryRanges(nums: IntArray): List<String> {

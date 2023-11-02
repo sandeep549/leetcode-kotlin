@@ -1,4 +1,4 @@
-package com.sk.leetcode.easy
+package com.sk.topicWise
 
 class Solution88 {
     fun merge(nums1: IntArray, m: Int, nums2: IntArray, n: Int): Unit {

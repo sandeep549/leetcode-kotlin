@@ -1,4 +1,4 @@
-package com.sk.leetcode.easy
+package com.sk.topicWise
 
 class Solution1 {
     fun twoSum(nums: IntArray, target: Int): IntArray {

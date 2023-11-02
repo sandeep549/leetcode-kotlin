@@ -1,4 +1,4 @@
-package com.sk.leetcode.easy
+package com.sk.topicWise
 
 class Solution121 {
     fun maxProfit(prices: IntArray): Int {
