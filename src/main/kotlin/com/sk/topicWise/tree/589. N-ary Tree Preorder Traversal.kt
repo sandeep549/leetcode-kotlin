@@ -1,6 +1,6 @@
 package com.sk.topicWise.tree
 
-import com.sk.model.NTreeNode
+import com.sk.datamodels.NTreeNode
 import java.util.*
 
 // Recursive

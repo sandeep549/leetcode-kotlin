@@ -1,4 +1,4 @@
-package com.sk.model
+package com.sk.datamodels
 
 /**
  * N-ary tree node

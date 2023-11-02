@@ -1,6 +1,6 @@
 package com.sk.topicWise.tree
 
-import com.sk.model.NTreeNode
+import com.sk.datamodels.NTreeNode
 
 @ExperimentalStdlibApi
 private fun levelOrder(root: NTreeNode?): List<List<Int>> {
