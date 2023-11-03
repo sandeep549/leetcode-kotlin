@@ -1,7 +1,5 @@
 package com.sk.topicWise.design
 
-import java.util.ArrayDeque
-
 private class MinStack() {
 
     /** initialize your data structure here. */
@@ -9,25 +7,25 @@ private class MinStack() {
     var minstack = ArrayDeque<Int>()
 
     fun push(x: Int) {
-        stack.push(x)
-        if (!minstack.isEmpty()) {
-            minstack.push(minOf(minstack.peek(), x))
+        stack.addLast(x)
+        if (minstack.isNotEmpty()) {
+            minstack.addLast(minOf(minstack.last(), x))
         } else {
-            minstack.push(x)
+            minstack.addLast(x)
         }
     }
 
     fun pop() {
-        stack.pop()
-        minstack.pop()
+        stack.removeLast()
+        minstack.removeLast()
     }
 
     fun top(): Int {
-        return stack.peek()
+        return stack.last()
     }
 
     fun getMin(): Int {
-        return minstack.peek()
+        return minstack.last()
     }
 }
 
@@ -36,20 +34,20 @@ private class MinStack2 {
 
     private var stack = ArrayDeque<Element>()
     fun push(x: Int) {
-        val min = if (stack.isEmpty()) x else Math.min(stack.peek().min, x)
-        stack.push(Element(x, min))
+        val min = if (stack.isEmpty()) x else minOf(stack.last().min, x)
+        stack.addLast(Element(x, min))
     }
 
     fun pop() {
-        stack.pop()
+        stack.removeLast()
     }
 
     fun top(): Int {
-        return stack.peek().value
+        return stack.last().value
     }
 
     fun getMin(): Int {
-        return stack.peek().min
+        return stack.last().min
     }
 }
 
