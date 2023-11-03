@@ -1,20 +1,28 @@
 package com.sk.topicWise.stack
 
-import java.util.*
+import java.lang.StringBuilder
 
-private fun simplifyPath(path: String): String {
-    val stack: Deque<String> = ArrayDeque()
-    val skip = setOf("..", ".", "")
-    for (dir in path.split("/").toTypedArray()) {
-        println(dir)
-        if (dir == ".." && !stack.isEmpty()) stack.pop()
-        else if (!skip.contains(dir)) stack.push(dir)
+class Solution71 {
+    fun simplifyPath(path: String): String {
+        val stack = ArrayDeque<String>()
+        for (dir in path.split("/")) {
+            if (dir == "" || dir == ".") continue
+            if (dir == "..") {
+                if (stack.isNotEmpty()) stack.removeLast()
+            } else {
+                stack.addLast(dir)
+            }
+        }
+        val res = StringBuilder()
+        while (stack.isNotEmpty()) {
+            res.append("/${stack.removeFirst()}")
+        }
+        return res.toString().ifEmpty { "/" }
     }
-    var res = ""
-    for (dir in stack) res = "/$dir$res"
-    return if (res.isEmpty()) "/" else res
 }
 
+
 fun main() {
-    println(simplifyPath("/a//b////c/d//././/.."))
+    val s = Solution71()
+    println(s.simplifyPath("/a//b////c/d//././/.."))
 }
