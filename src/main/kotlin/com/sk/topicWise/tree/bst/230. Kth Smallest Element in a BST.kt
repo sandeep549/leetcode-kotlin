@@ -1,4 +1,6 @@
-package com.sk.topicWise.tree
+package com.sk.topicWise.tree.bst
+
+import com.sk.topicWise.tree.TreeNode
 
 class Solution230 {
     fun kthSmallest(root: TreeNode?, k: Int): Int {
