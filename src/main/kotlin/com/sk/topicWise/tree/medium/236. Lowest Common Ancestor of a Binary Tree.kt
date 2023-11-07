@@ -1,6 +1,6 @@
-package com.sk.topicWise.tree
+package com.sk.topicWise.tree.medium
 
-import java.util.LinkedList
+import com.sk.topicWise.tree.TreeNode
 
 class Solution236_1 {
     fun lowestCommonAncestor(root: TreeNode?, p: TreeNode?, q: TreeNode?): TreeNode? {
@@ -12,26 +12,22 @@ class Solution236_1 {
 }
 
 class Solution236_2 {
-    fun lowestCommonAncestor(
-        root: TreeNode?,
-        p: TreeNode?,
-        q: TreeNode?
-    ): TreeNode? {
+    fun lowestCommonAncestor(root: TreeNode?, p: TreeNode?, q: TreeNode?): TreeNode? {
         val parent = HashMap<TreeNode?, TreeNode?>()
-        val queue = LinkedList<TreeNode>()
-        queue.offer(root)
+        val queue = ArrayDeque<TreeNode>()
+        queue.add(root!!)
         parent[root] = null
 
-        // Traverse to p and make parent map
+        // Traverse to p and q, and make parent map
         while (parent.containsKey(p).not() || parent.containsKey(q).not()) {
-            val n = queue.poll()
+            val n = queue.removeLast()
             if (n.left != null) {
                 parent[n.left!!] = n
-                queue.offer(n.left)
+                queue.add(n.left!!)
             }
             if (n.right != null) {
                 parent[n.right!!] = n
-                queue.offer(n.right)
+                queue.add(n.right!!)
             }
         }
 
