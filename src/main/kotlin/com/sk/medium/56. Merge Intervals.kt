@@ -1,28 +1,31 @@
-package com.sk.leetcode.kotlin
+package com.sk.medium
 
 import java.util.LinkedList
 import java.util.Stack
-import java.util.TreeMap
 
-
-//region - solution-1
-private fun merge(intervals: Array<IntArray>): Array<IntArray> {
-    if (intervals.isEmpty()) return emptyArray()
-    val sortedIntervalList = intervals.sortedWith(Comparator { t1, t2 -> t1[0] - t2[0] })
-    val result = ArrayList<IntArray>()
-    for (i in 0..sortedIntervalList.lastIndex) {
-        if (i == 0) {
-            result.add(sortedIntervalList[i])
-            continue
+class Solution56 {
+    fun merge(intervals: Array<IntArray>): Array<IntArray> {
+        if (intervals.isEmpty()) return emptyArray()
+        val sorted = intervals.sortedWith(Comparator { t1, t2 -> t1[0] - t2[0] }) // sort with start time
+        val result = ArrayList<IntArray>()
+        for (i in 0..sorted.lastIndex) {
+            val curr = sorted[i]
+            if (i == 0) {
+                result.add(curr)
+                continue
+            }
+            val pre = result.last()
+            if (curr[0] <= pre[1]) { // Is curr start overlap with previous interval?
+                pre[1] = maxOf(pre[1], curr[1])
+            } else { // Its start of new interval
+                result.add(curr)
+            }
         }
-        val curr = sortedIntervalList[i]
-        val pre = result.last()
-        if (curr[0] <= pre[1]) pre[1] = maxOf(pre[1], curr[1])
-        else result.add(curr)
+        return result.toTypedArray()
     }
-    return result.toTypedArray()
 }
-//endregion
+
+// ================================================================================================
 
 //region-Solution-2
 private class Solution2 {
@@ -112,39 +115,3 @@ private class Solution2 {
  */
 //endregion
 
-
-// ================================================================================================
-
-class Solution {
-    fun topStudents(positive_feedback: Array<String>,
-                    negative_feedback: Array<String>,
-                    reports: Array<String>,
-                    student_id: IntArray,
-                    k: Int
-    ): List<Int> {
-        val positive = positive_feedback.toSet()
-        val negative = negative_feedback.toSet()
-
-        val feedback = mutableMapOf<Int,Int>()
-
-        for(i in reports.indices) {
-            val report = reports[i]
-            for(word in report.split(" ")) {
-                when {
-                    positive.contains(word) -> {
-                        feedback[student_id[i]] = feedback.getOrDefault(student_id[i], 0) + 3
-                    }
-                    negative.contains(word) -> {
-                        feedback[student_id[i]] = feedback.getOrDefault(student_id[i], 0) - 1
-                    }
-                }
-            }
-        }
-
-         return feedback
-             .toList()
-             .sortedWith(compareByDescending<Pair<Int, Int>> { it.second }.thenBy { it.first })
-             .take(k)
-             .map { it.first }
-    }
-}
