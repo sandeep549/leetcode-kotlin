@@ -1,25 +1,33 @@
 package com.sk.topicWise.binarysearch
 
-fun main() {
-    println(searchRange(intArrayOf(1), 1).toList())
-}
 
-private fun searchRange(nums: IntArray, target: Int): IntArray {
-    var lo = 0
-    var hi: Int = nums.lastIndex
-    while (lo < hi) { // find first
-        val mid = lo + (hi - lo) / 2
-        if (nums[mid] < target) lo = mid + 1 else hi = mid
+class Solution34 {
+    fun searchRange(nums: IntArray, target: Int): IntArray {
+        var l = 0
+        var r = nums.lastIndex
+        while (l < r) { // find first on left side, always keep left element in search space
+            val mid = l + (r - l) / 2
+            if (nums[mid] < target) {
+                l = mid + 1
+            } else {
+                r = mid
+            }
+        }
+        val first = l
+        // don't reset lo to 0
+        r = nums.lastIndex
+        while (l < r) { // // find first on left side, always keep left element in search space
+            val mid = l + (r - l + 1) / 2 // keep mid towards hi side
+            if (nums[mid] <= target) {
+                l = mid
+            } else {
+                r = mid - 1
+            }
+        }
+        return if (nums.isEmpty() || nums[l] != target) {
+            intArrayOf(-1, -1)
+        } else {
+            intArrayOf(first, l)
+        }
     }
-    val first = lo
-    // don't reset lo to 0
-    hi = nums.lastIndex
-    while (lo < hi) { // find last
-        val mid = lo + (hi - lo + 1) / 2 // keep mid towards hi side
-        if (nums[mid] <= target) lo = mid else hi = mid - 1
-    }
-    return if (nums.isEmpty() || nums[lo] != target) intArrayOf(-1, -1) else intArrayOf(
-        first,
-        lo
-    )
 }
