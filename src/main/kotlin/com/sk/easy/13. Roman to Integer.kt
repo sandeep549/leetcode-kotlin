@@ -1,7 +1,7 @@
 package com.sk.easy
 
 class Solution13 {
-    fun romanToInt(romanString: String): Int {
+    fun romanToInt(s: String): Int {
         val map = mapOf(
             'I' to 1,
             'V' to 5,
@@ -12,12 +12,17 @@ class Solution13 {
             'M' to 1000
         )
         var sum = 0
-        for (i in 0 until romanString.lastIndex) {
-            val curr = map[romanString[i]]!!
-            val next = map[romanString[i + 1]]!!
-            sum += (if (curr < next) -curr else next)
+        for (i in 0 until s.lastIndex) {
+            val curr = map[s[i]]!!
+            val next = map[s[i + 1]]!!
+            sum += (if (curr < next) -curr else curr)
         }
-        sum += map[romanString[romanString.lastIndex]]!!
+        sum += map[s[s.lastIndex]]!!
         return sum
     }
+}
+
+fun main() {
+    val s = Solution13()
+    println(s.romanToInt("LC"))
 }
