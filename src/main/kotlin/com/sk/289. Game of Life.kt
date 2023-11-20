@@ -77,3 +77,64 @@ private fun gameOfLife2(board: Array<IntArray>?) {
     }
 }
 
+class Solution289 {
+    /**
+     * Go over matrix and check every cell situation for next generation using 8 neighbours.
+     * If this cell is supposed to change then do -2 for it, to make it negative
+     * Otherwise, don't change as it's not supposed to change in next generation.
+     *
+     * Go over matrix again, if value is negative then, flip it
+     */
+    fun gameOfLife(board: Array<IntArray>): Unit {
+        for (r in board.indices) {
+            for (c in board[0].indices) {
+                val cur = board[r][c]
+                val live = liveNeighbour(board, r, c)
+                when {
+                    cur == 1 && live < 2 -> {
+                        board[r][c] -= 2 // It has to flip
+                    }
+
+                    cur == 1 && (live == 2 || live == 3) -> {
+                        // No flip, No change
+                    }
+
+                    cur == 1 && live > 3 -> {
+                        board[r][c] -= 2 // It has to flip
+                    }
+
+                    cur == 0 && live == 3 -> {
+                        board[r][c] -= 2 // It has to flip
+                    }
+                }
+            }
+        }
+
+        for (r in board.indices) {
+            for (c in board[0].indices) {
+                if (board[r][c] < 0) {
+                    board[r][c] += 2 // Original value
+                    board[r][c] = if (board[r][c] == 0) 1 else 0
+                }
+            }
+        }
+    }
+
+    private fun liveNeighbour(board: Array<IntArray>, r: Int, c: Int): Int {
+        if (r !in 0..board.lastIndex || c !in 0..board[0].lastIndex) return 0
+        var count = 0
+        if (c - 1 >= 0 && (board[r][c - 1] == 1 || board[r][c - 1] + 2 == 1)) count++
+        if (c - 1 >= 0 && r - 1 >= 0 && (board[r - 1][c - 1] == 1 || board[r - 1][c - 1] + 2 == 1)) count++
+        if (r - 1 >= 0 && (board[r - 1][c] == 1 || board[r - 1][c] + 2 == 1)) count++
+        if (r - 1 >= 0 && c + 1 < board[0].size && (board[r - 1][c + 1] == 1 || board[r - 1][c + 1] + 2 == 1)) count++
+        if (c + 1 < board[0].size && (board[r][c + 1] == 1 || board[r][c + 1] + 2 == 1)) count++
+        if (r + 1 < board.size && c + 1 < board[0].size && (board[r + 1][c + 1] == 1 || board[r + 1][c + 1] + 2 == 1)) count++
+        if (r + 1 < board.size && (board[r + 1][c] == 1 || board[r + 1][c] + 2 == 1)) count++
+        if (r + 1 < board.size && c - 1 >= 0 && (board[r + 1][c - 1] == 1 || board[r + 1][c - 1] + 2 == 1)) count++
+        return count
+    }
+
+}
+
+
+
