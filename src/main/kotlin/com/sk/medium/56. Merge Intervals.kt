@@ -6,10 +6,10 @@ import java.util.Stack
 class Solution56 {
     fun merge(intervals: Array<IntArray>): Array<IntArray> {
         if (intervals.isEmpty()) return emptyArray()
-        val sorted = intervals.sortedWith(Comparator { t1, t2 -> t1[0] - t2[0] }) // sort with start time
+        intervals.sortBy { it[0] } // sort with start time
         val result = ArrayList<IntArray>()
-        for (i in 0..sorted.lastIndex) {
-            val curr = sorted[i]
+        for (i in intervals.indices) {
+            val curr = intervals[i]
             if (i == 0) {
                 result.add(curr)
                 continue
@@ -29,9 +29,9 @@ class Solution56 {
 
 //region-Solution-2
 private class Solution2 {
-    private var graph = mutableMapOf<IntArray, MutableList<IntArray>>()
-    private var nodesInComp = mutableMapOf<Int, MutableList<IntArray>>()
-    private var visited = mutableSetOf<IntArray>()
+    private var graph = HashMap<IntArray, MutableList<IntArray>>()
+    private var nodesInComp = HashMap<Int, MutableList<IntArray>>()
+    private var visited = HashSet<IntArray>()
 
     // return whether two intervals overlap (inclusive)
     private fun overlap(a: IntArray, b: IntArray): Boolean {
@@ -57,10 +57,10 @@ private class Solution2 {
         }
     }
 
-    // merges all of the nodes in this connected component into one interval.
+    // merges all the nodes in this connected component into one interval.
     private fun mergeNodes(nodes: List<IntArray>): IntArray {
-        val min: Int = nodes.minBy { ints -> ints[0] }?.get(0) ?: 0
-        val max: Int = nodes.maxBy { ints -> ints[1] }?.get(1) ?: 0
+        val min: Int = nodes.minBy { ints -> ints[0] }[0] ?: 0
+        val max: Int = nodes.maxBy { ints -> ints[1] }[1] ?: 0
         return intArrayOf(min, max)
     }
 
@@ -114,4 +114,3 @@ private class Solution2 {
  * https://leetcode.com/problems/meeting-rooms/
  */
 //endregion
-
