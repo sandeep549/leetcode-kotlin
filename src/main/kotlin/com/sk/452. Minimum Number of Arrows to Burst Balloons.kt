@@ -32,37 +32,37 @@ private fun findMinArrowShots(points: Array<IntArray>): Int {
 //
 //###############################################################################
 class Solution452 {
+
+    /*
+        Maintain overlapping regions with (start, end)
+        For every new element check whether does it overlap with other regions, update boundry of all of them.
+        Return no of regions at last.
+        We can sort the array first to improve time.
+    */
     fun findMinArrowShots(points: Array<IntArray>): Int {
         points.sortBy { it[0] }
         var result = 0
-        var p = Pair(points[0][0], points[0][1])
+        var regionX = points[0][0]
+        var regionY = points[0][1]
         for (i in 1 until points.size) {
-            if (isOverlap(p, points[i][0], points[i][1])) {
-                p = Pair(
-                    maxOf(p.first, points[1][0]),
-                    minOf(p.second, points[i][1])
-                )
+            if (isOverlap(regionX, regionY, points[i][0], points[i][1])) {
+                regionX = maxOf(regionX, points[1][0])
+                regionY = minOf(regionY, points[i][1])
             } else {
                 result++
-                p = Pair(points[i][0], points[i][1])
+                regionX = points[i][0]
+                regionY = points[i][1]
             }
         }
-        return result + 1 // we update arrow count when found new region, for last region add 1 as there is not new regionafter last
+        return result + 1 // we update arrow count when found new region, for last region add 1 as there is not new region after last
     }
 
-    fun isOverlap(
-        p: Pair<Int, Int>,
+    private fun isOverlap(
+        regionX: Int,
+        regionY: Int,
         x: Int,
         y: Int
     ): Boolean { // check start only as array is sorted by start.
-        return x >= p.first && x <= p.second
+        return x in regionX..regionY
     }
 }
-
-/*
-Maintain overlapping regions with (start, end)
-For every new element check whether does it overlap with other regions, update boundry of all of them.
-Return no of regions at last.
-
-We can sort the array first to improve time.
- */
