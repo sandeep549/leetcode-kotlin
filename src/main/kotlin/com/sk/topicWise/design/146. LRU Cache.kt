@@ -11,23 +11,24 @@ private class LRUCache(capacity: Int) {
     init {
         this.capacity = capacity
 
-        head = DLinkedNode()
-        head.pre = null
-
-        tail = DLinkedNode()
-        tail.next = null
-
+        head = DLinkedNode() // Dummy head
+        tail = DLinkedNode() // Dummy tail
         head.next = tail
         tail.pre = head
+        head.pre = null
+        tail.next = null
     }
 
     //region internal methods
+    // Add node after head
     private fun addNode(node: DLinkedNode) {
-        node.pre = head
-        node.next = head.next
+        val next = head.next
 
-        head.next!!.pre = node
+        node.pre = head
+        node.next = next
+
         head.next = node
+        next?.pre = node
     }
 
     private fun removeNode(node: DLinkedNode) {
@@ -43,7 +44,7 @@ private class LRUCache(capacity: Int) {
         addNode(node)
     }
 
-    private fun popTail(): DLinkedNode? {
+    private fun popTail(): DLinkedNode {
         val res = tail.pre
         removeNode(res!!)
         return res
@@ -68,7 +69,7 @@ private class LRUCache(capacity: Int) {
             ++count
             if (count > capacity) {
                 val tail = popTail()
-                cache.remove(tail!!.key)
+                cache.remove(tail.key)
                 --count
             }
         } else {
@@ -89,7 +90,7 @@ private class LRUCache(capacity: Int) {
 //#############################################################################################
 class LRUCache146(val capacity: Int) {
 
-    val cache = LinkedHashMap<Int, Int>()
+    private val cache = LinkedHashMap<Int, Int>()
 
     fun get(key: Int): Int {
         val v = cache[key] ?: return -1
