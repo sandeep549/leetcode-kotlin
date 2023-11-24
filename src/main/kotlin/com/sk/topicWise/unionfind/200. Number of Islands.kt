@@ -28,7 +28,8 @@ class Solution200 {
     }
 
 
-    var distance = arrayOf(intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, 1), intArrayOf(0, -1))
+    //var distance = arrayOf(intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, 1), intArrayOf(0, -1))
+    var distance = arrayOf(intArrayOf(-1, 0), intArrayOf(0, -1)) // Only top and left
     fun numIslands2(grid: Array<CharArray>): Int {
         if (grid.isEmpty()) return 0
         val uf = UnionFind(grid)
