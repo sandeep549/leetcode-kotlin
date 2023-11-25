@@ -18,17 +18,22 @@ class Solution207 {
      */
     fun canFinish(numCourses: Int, prerequisites: Array<IntArray>): Boolean {
         val list = ArrayList<ArrayList<Int>>()
-        for (i in 0 until numCourses) list.add(ArrayList())
+        for (i in 0 until numCourses) {
+            list.add(ArrayList())
+        }
+
         val indegree = IntArray(numCourses)
         for (pre in prerequisites) {
             list[pre[1]].add(pre[0])
             indegree[pre[0]]++
         }
+
         var count = 0
         val queue = ArrayDeque<Int>()
         for (i in indegree.indices) {
             if (indegree[i] == 0) queue.addLast(i)
         }
+
         while (!queue.isEmpty()) {
             val course = queue.removeFirst()
             count++
@@ -39,6 +44,7 @@ class Solution207 {
                 }
             }
         }
+
         return count == numCourses
     }
 }
