@@ -1,19 +1,24 @@
 package com.sk.set0
 
-private fun permute(nums: IntArray): List<List<Int>> {
-    val ans = mutableListOf<List<Int>>()
-    fun dfs(set: MutableSet<Int>) {
+class Solution46 {
+    fun permute(nums: IntArray): List<List<Int>> {
+        val ans = mutableListOf<List<Int>>()
+        dfs(nums, mutableSetOf(), ans)
+        return ans
+    }
+
+    private fun dfs(nums: IntArray, set: MutableSet<Int>, ans: MutableList<List<Int>>) {
         if (set.size == nums.size) {
-            ans.add(set.toList())
+            ans.add(set.toList()) // make copy and add to answer
         } else {
             for (ele in nums) {
                 if (set.contains(ele)) continue
-                set.add(ele)
-                dfs(set)
-                set.remove(ele)
+                set.add(ele) // add
+                dfs(nums, set, ans)
+                set.remove(ele) // remove
             }
         }
     }
-    dfs(mutableSetOf())
-    return ans
+
 }
+
