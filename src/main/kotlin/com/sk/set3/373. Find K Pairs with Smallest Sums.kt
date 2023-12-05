@@ -41,3 +41,26 @@ class Solution373 {
         return res
     }
 }
+
+
+// https://leetcode.com/problems/find-k-pairs-with-smallest-sums/solutions/84551/simple-java-o-klogk-solution-with-explanation/comments/168485
+class Solution373_1 {
+    fun kSmallestPairs(nums1: IntArray, nums2: IntArray, k: Int): List<IntArray> {
+        var k = k
+        val pq = PriorityQueue<IntArray> { a, b -> nums1[a[0]] + nums2[a[1]] - (nums1[b[0]] + nums2[b[1]])
+        }
+        val res: MutableList<IntArray> = ArrayList()
+        var i = 0
+        while (i < nums1.size && i < k) {
+            pq.offer(intArrayOf(i, 0))
+            i++
+        }
+        while (k-- > 0 && !pq.isEmpty()) {
+            val cur = pq.poll()
+            res.add(intArrayOf(nums1[cur[0]], nums2[cur[1]]))
+            if (cur[1] == nums2.size - 1) continue  //Don't add the next index if there is no more left in 2nd array
+            pq.offer(intArrayOf(cur[0], cur[1] + 1))
+        }
+        return res
+    }
+}
