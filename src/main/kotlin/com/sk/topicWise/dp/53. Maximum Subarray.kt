@@ -4,7 +4,7 @@ package com.sk.topicWise.dp
  * At any index i there are 3 possibilities,
  * (1) Max sub-array is found before i.e. maxSoFar
  * (2) Max sub-array is running and also include this element i.e. maxEndingHere
- * (3) Max sub-array start here and may contains only this element
+ * (3) Max sub-array start here and may contain only this element
  */
 
 // Top-down approach using memoization
@@ -25,11 +25,11 @@ private class Solution {
 }
 
 // Bottom-up approach using tabulation
-private fun maxSubArray2(arr: IntArray): Int {
-    var maxSoFar = arr[0]
-    var maxEndingHere = arr[0]
-    for (i in 1..arr.lastIndex) {
-        maxEndingHere = maxOf(maxEndingHere + arr[i], arr[i])
+private fun maxSubArray2(nums: IntArray): Int {
+    var maxSoFar = nums[0]
+    var maxEndingHere = nums[0]
+    for (i in 1..nums.lastIndex) {
+        maxEndingHere = maxOf(maxEndingHere + nums[i], nums[i])
         maxSoFar = maxOf(maxSoFar, maxEndingHere)
     }
     return maxSoFar
