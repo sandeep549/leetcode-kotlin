@@ -1,6 +1,7 @@
-package com.sk.topicWise.tree
+package com.sk.topicWise.tree.easy
 
-import java.util.ArrayDeque
+import com.sk.topicWise.tree.TreeNode
+
 
 // TODO check morris traversal also
 
@@ -24,10 +25,10 @@ private fun inorderTraversal2(root: TreeNode?): List<Int> {
     val stack = ArrayDeque<TreeNode>() // Stack is legacy and deprecated
     while (curr != null || !stack.isEmpty()) {
         while (curr != null) {
-            stack.push(curr)
+            stack.addLast(curr)
             curr = curr.left
         }
-        curr = stack.pop()
+        curr = stack.removeLast()
         list.add(curr.`val`)
         curr = curr.right
     }
@@ -40,10 +41,10 @@ private fun inorderTraversal3(root: TreeNode?): List<Int> {
     val stack = ArrayDeque<TreeNode>() // Stack is legacy and deprecated
     while (curr != null || !stack.isEmpty()) {
         if (curr != null) {
-            stack.push(curr)
+            stack.addLast(curr)
             curr = curr.left
         } else {
-            curr = stack.pop()
+            curr = stack.removeLast()
             list.add(curr.`val`)
             curr = curr.right
         }
