@@ -9,11 +9,11 @@ class Trie {
      * Insert string into Trie.
      */
     fun insert(str: String) {
-        var node: TrieNode = root
+        var node = root
         for (c in str) {
-            val index: Int = c - 'a' // index is mark of this char presence, index null means this char absent
-            if (node.children[index] == null) node.children[index] = TrieNode()
-            node = node.children[index]!!
+            val i = c - 'a' // index is mark of this char presence, index null means this char absent
+            if (node.children[i] == null) node.children[i] = TrieNode()
+            node = node.children[i]!!
         }
         node.isEndOfWord = true
     }
@@ -22,13 +22,13 @@ class Trie {
      * Find string in Trie.
      */
     fun search(str: String): Boolean {
-        var node: TrieNode? = root
+        var node = root
         for (c in str) {
             val index = c - 'a'
-            if (node!!.children[index] == null) return false
-            node = node.children[index]
+            if (node.children[index] == null) return false
+            node = node.children[index]!!
         }
-        return node != null && node.isEndOfWord
+        return node.isEndOfWord
     }
 
     /**
@@ -56,7 +56,7 @@ class Trie {
         if (node == null) return
         if (node.isEndOfWord) println(prefix)
         for (i in node.children.indices) {
-            val ch = ('a'.toInt() + i).toChar()
+            val ch = 'a' + i
             printSuggestions(prefix + ch, node.children[i])
         }
     }
@@ -70,7 +70,7 @@ class Trie {
     }
 
     companion object {
-        private const val SIZE = 25
+        private const val SIZE = 26
     }
 }
 
