@@ -2,54 +2,88 @@ package com.sk.topicWise.trie
 
 class WordDictionary() {
 
-    /** Initialize your data structure here. */
     private class TrieNode {
-        var end = false
-        var children: MutableMap<Char, TrieNode?> = HashMap()
+        var wordEnd = false
+        var children = HashMap<Char, TrieNode>()
     }
+
     private var root = TrieNode()
 
-    /** Adds a word into the data structure. */
     fun addWord(word: String) {
-        var trieNode: TrieNode = root
+        var cur = root
         for (ch in word) {
-            if (!trieNode.children.containsKey(ch)) trieNode.children[ch] = TrieNode()
-            trieNode = trieNode.children[ch]!!
+            if (!cur.children.containsKey(ch)) cur.children[ch] = TrieNode()
+            cur = cur.children[ch]!!
         }
-        trieNode.end = true
+        cur.wordEnd = true
     }
 
-    /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
     fun search(word: String): Boolean {
-        return search(word, root)
+        return search(word, 0, root)
     }
-    private fun search(word: String, trieNode: TrieNode?): Boolean {
-        println(word)
-        var node = trieNode
-        for (i in word.indices) {
-            var ch = word[i]
-            println("->" + ch)
+
+    private fun search(word: String, k: Int, trieNode: TrieNode): Boolean {
+        var cur = trieNode
+        for (i in k..word.lastIndex) {
+            val ch = word[i]
             if (ch == '.') {
-                for (node in node!!.children.values) {
-                    return search(word.substring(i + 1, word.length), node)
+                for (node in cur.children.values) {
+                    if (search(word, i + 1, node)) return true
                 }
                 return false
-            } else if (node!!.children.containsKey(ch)) {
-                node = node.children[ch]
-            } else {
-                return false
             }
+
+            if (!cur.children.containsKey(ch)) return false
+
+            cur = cur.children[ch]!!
         }
-        return node != null && node.end
+        return cur.wordEnd
     }
 }
 
-fun main() {
-    var d = WordDictionary()
-    d.addWord("at")
-    d.addWord("and")
-    d.addWord("an")
-    d.addWord("add")
-    d.addWord("bat")
-    println(d.search(".at"))
+//######################################################################
+//
+//######################################################################
+class WordDictionary211_2() {
+    private val root = TrieNode()
+
+    fun addWord(word: String) {
+        var cur = root
+        for (ch in word) {
+            val idx = ch - 'a'
+            if (cur.children[idx] == null) cur.children[idx] = TrieNode()
+            cur = cur.children[idx]!!
+        }
+        cur.wordEnd = true
+    }
+
+    fun search(word: String): Boolean {
+        return find(word, 0, root)
+    }
+
+    private fun find(word: String, k: Int, node: TrieNode): Boolean {
+        var cur = node
+        for (i in k..word.lastIndex) {
+            val ch = word[i]
+            if (ch == '.') {
+                for (n in cur.children) {
+                    if (n == null) continue
+                    if (find(word, i + 1, n)) return true
+                }
+                return false
+            }
+            val idx = ch - 'a'
+            if (cur.children[idx] == null) return false
+            cur = cur.children[idx]!!
+        }
+        return cur.wordEnd
+    }
+
+    private class TrieNode {
+        val children = arrayOfNulls<TrieNode>(26)
+        var wordEnd = false
+    }
+
 }
+
+
