@@ -4,15 +4,15 @@ class Solution70 {
     // top-down
     fun climbStairs(n: Int): Int {
         val dp = IntArray(n + 1) { -1 }
-        return ways(n, dp)
-    }
-
-    private fun ways(n: Int, dp: IntArray): Int {
-        if (n == 0 || n == 1) return 1
-        if (dp[n] == -1) {
-            dp[n] = ways(n - 1, dp) + ways(n - 2, dp)
+        fun ways(n: Int): Int {
+            if (n == 0 || n == 1) return 1
+            if (dp[n] == -1) {
+                dp[n] = ways(n - 1) + ways(n - 2)
+            }
+            return dp[n]
         }
-        return dp[n]
+
+        return ways(n)
     }
 
     // bottom-up
