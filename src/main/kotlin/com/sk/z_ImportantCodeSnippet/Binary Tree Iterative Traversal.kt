@@ -1,18 +1,17 @@
 package com.sk.z_ImportantCodeSnippet
 
 import com.sk.topicWise.tree.TreeNode
-import java.util.ArrayDeque
 
 private fun preorderTraversal2(root: TreeNode?): List<Int> {
     val list = mutableListOf<Int>()
     if(root == null) return list
     val s = ArrayDeque<TreeNode>()
-    s.push(root)
+    s.addLast(root)
     while(s.isNotEmpty()) {
-        val node = s.pop()
+        val node = s.removeLast()
         list.add(node.`val`)
-        node.right?.let { s.push(it) }
-        node.left?.let { s.push(it) }
+        node.right?.let { s.addLast(it) }
+        node.left?.let { s.addLast(it) }
     }
     return list
 }
@@ -23,10 +22,10 @@ private fun inorderTraversal2(root: TreeNode?): List<Int> {
     val stack = ArrayDeque<TreeNode>() // Stack is legacy and deprecated
     while (curr != null || !stack.isEmpty()) {
         while (curr != null) {
-            stack.push(curr)
+            stack.addLast(curr)
             curr = curr.left
         }
-        curr = stack.pop()
+        curr = stack.removeLast()
         list.add(curr.`val`)
         curr = curr.right
     }
@@ -40,21 +39,21 @@ private fun postorderTraversal2(root: TreeNode?): List<Int> {
         return result
     }
 
-    stack.push(root)
+    stack.addLast(root)
     var cur = root
     var pre: TreeNode? = null
     while (!stack.isEmpty()) {
-        cur = stack.peek()
+        cur = stack.first()
         if (cur!!.left == null && cur.right == null || pre != null && (pre == cur.left || pre == cur.right)) {
             result.add(cur.`val`) // deal with topological dependency
-            stack.pop() // stack top value is processed, remove it now
+            stack.removeLast() // stack top value is processed, remove it now
             pre = cur // for backtracking
         } else {
             if (cur.right != null) {
-                stack.push(cur.right)
+                stack.addLast(cur.right!!)
             }
             if (cur.left != null) {
-                stack.push(cur.left)
+                stack.addLast(cur.left!!)
             }
         }
     }
