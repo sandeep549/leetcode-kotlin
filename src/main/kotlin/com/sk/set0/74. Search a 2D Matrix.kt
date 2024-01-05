@@ -1,6 +1,6 @@
 package com.sk.set0
 
-class Solution64 {
+class Solution74 {
     fun searchMatrix(matrix: Array<IntArray>, target: Int): Boolean {
         val R = matrix.size
         val C = matrix[0].size
