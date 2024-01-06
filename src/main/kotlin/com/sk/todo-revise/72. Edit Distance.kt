@@ -1,4 +1,4 @@
-package com.sk.todo
+package com.sk.`todo-revise`
 
 class Solution72 {
 
