@@ -3,15 +3,11 @@ package com.sk.leetcode.kotlin
 import java.util.ArrayList
 import java.util.Random
 
-private class RandomizedSet() {
+class RandomizedSet380() {
 
     var list = ArrayList<Int>()
     var map = mutableMapOf<Int, Int>()
     var rand = Random()
-
-    /** Initialize your data structure here.  */
-    fun RandomizedSet() {
-    }
 
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element.  */
     fun insert(`val`: Int): Boolean {
