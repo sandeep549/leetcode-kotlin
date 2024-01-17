@@ -1,4 +1,4 @@
-package com.sk.topicWise.dp.hard
+package com.sk.`todo-revise`
 
 class Solution123 {
     fun maxProfit(prices: IntArray): Int {
