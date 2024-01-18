@@ -91,3 +91,53 @@ class Solution5 {
         return str.substring(start, start + max)
     }
 }
+
+
+// Taken from comments of
+// https://leetcode.com/problems/longest-palindromic-substring/solutions/151144/bottom-up-dp-two-pointers
+class Solution5_2 {
+    /**
+     * If you do the brute force way you would generate a lot more strings than this method looks at.
+     * which is set of all subsets ( rather substrings) -
+     * E(sigma) (n-i) as i runs from 1 to n-1 = n-squared + n(n+1)/2 - O(n-squared) complexity.
+     * This problem can be done using DP with n-squared complexity as shown above by [@GraceMeng](https://leetcode.com/GraceMeng)
+     * with a few comments below by me based on that
+     */
+    fun longestPalindrome(s: String?): String? {
+        if (s == null || s.length <= 1) return s
+        val len = s.length
+        // dp[i][j] stands for status of a substring starting at i and ending at j incl j
+        val dp = Array(len) { BooleanArray(len) }
+
+        // initialize all the 1 character palins
+        for (i in 0 until len) {
+            dp[i][i] = true
+        }
+
+        // to compute dp[i][j] we need dp[i+1][j-1]
+        // so the i - outer loop needs to go from higher to lower
+        // and the j - inner loop needs to go from lower to higher
+        var maxLen = 0
+        var maxSta = 0
+        var maxEnd = 0
+        for (i in len downTo 0) {
+            // dist of 0 - already covered by initialization
+            for (dist in 1 until len - i) {
+                val j = i + dist
+                // we are ready to compute dp [i] [j]
+                if (dist == 1 && s[i] == s[j]) {
+                    dp[i][j] = true
+                } else if (s[i] == s[j]) {
+                    dp[i][j] = dp[i + 1][j - 1]
+                }
+                // if true
+                if (dp[i][j] && maxLen < j - i + 1) {
+                    maxLen = j - i + 1
+                    maxSta = i
+                    maxEnd = j
+                }
+            }
+        }
+        return s.substring(maxSta, maxEnd + 1)
+    }
+}
