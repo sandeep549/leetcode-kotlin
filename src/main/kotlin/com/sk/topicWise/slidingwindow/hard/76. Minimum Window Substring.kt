@@ -17,7 +17,7 @@ class Solution76 {
                 formed++
             }
             while (l <= r && formed == required) {
-                if (r-l < ans.second-ans.first) {
+                if (r - l < ans.second - ans.first) {
                     ans = Pair(l, r) // save new smallest window
                 }
                 c = s[l]
@@ -31,36 +31,37 @@ class Solution76 {
         }
         return if (ans.second - ans.first > s.length) "" else s.substring(ans.first, ans.second + 1)
     }
-}
 
-private fun minWindow2(s: String, t: String): String {
-    val map = t.toCharArray().groupBy { it }.mapValues { it.value.size }.toMutableMap()
-    var start = 0
-    var end = 0
-    var minStart = 0
-    var minLen = Int.MAX_VALUE
-    var counter = t.length
+    fun minWindow2(s: String, t: String): String {
+        val map = t.toCharArray().groupBy { it }.mapValues { it.value.size }.toMutableMap()
+        var l = 0
+        var r = 0
+        var start = 0
+        var distance = Int.MAX_VALUE
+        var counter = t.length
 
-    while (end < s.length) {
-        val c1 = s[end]
-        if (map.contains(c1)) {
-            if (map[c1]!! > 0) counter--
-            map[c1] = map[c1]!! - 1
-        }
-        end++
-
-        while (counter == 0) {
-            if (minLen > end - start) {
-                minLen = end - start
-                minStart = start
+        while (r < s.length) {
+            val c1 = s[r]
+            if (map.contains(c1)) {
+                if (map[c1]!! > 0) counter--
+                map[c1] = map[c1]!! - 1
             }
-            val c2 = s[start]
-            if (map.contains(c2)) {
-                map[c2] = map[c2]!! + 1
-                if (map[c2]!! > 0) counter++
+            r++
+
+            while (counter == 0) {
+                if (distance > r - l) {
+                    distance = r - l
+                    start = l
+                }
+                val c2 = s[l]
+                if (map.contains(c2)) {
+                    map[c2] = map[c2]!! + 1
+                    if (map[c2]!! > 0) counter++
+                }
+                l++
             }
-            start++
         }
+        return if (distance == Int.MAX_VALUE) "" else s.substring(start, start + distance)
     }
-    return if (minLen == Int.MAX_VALUE) "" else s.substring(minStart, minStart + minLen)
+
 }
