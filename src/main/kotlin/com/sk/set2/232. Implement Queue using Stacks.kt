@@ -15,8 +15,8 @@ class MyQueue232() {
     }
 
     fun peek(): Int {
-        if(s2.isEmpty()) {
-            while(s1.isNotEmpty()) {
+        if (s2.isEmpty()) {
+            while (s1.isNotEmpty()) {
                 s2.addLast(s1.removeLast())
             }
         }
