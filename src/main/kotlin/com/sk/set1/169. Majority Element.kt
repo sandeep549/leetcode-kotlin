@@ -36,4 +36,17 @@ private fun majorityElement2(nums: IntArray): Int {
     return nums[nums.size / 2]
 }
 
+// Boyer - Moore
+fun majorityElement3(nums: IntArray): Int {
+    var major = nums[0]
+    var count = 1
+    for (i in 1 until nums.size) {
+        if (count == 0) {
+            major = nums[i]
+        }
+        count += if (nums[i] == major) 1 else -1
+    }
+    return major
+}
+
 
