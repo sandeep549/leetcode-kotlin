@@ -42,23 +42,32 @@ private fun majorityElement2(nums: IntArray): List<Int> {
     return ans
 }
 
-private fun majorityElement3(nums: IntArray): List<Int>? {
+// https://www.geeksforgeeks.org/boyer-moore-majority-voting-algorithm-for-searching-elements-having-more-than-k-occurrences/
+private fun majorityElement3(nums: IntArray): List<Int> {
     val K = 3
-    val candidates: MutableMap<Int, Int> = HashMap()
-    //get all candidates
+    val candidates = HashMap<Int, Int>()
+    /**
+     * Get all candidates.
+     * Traverse through the array, maintain (K-1) slots for different type of elements and their counts.
+     * For example for (1/2) case we have keep 1 slot and look for only 1 candidate.
+     * When we encounter kth different element, we decrease the count for all and remove
+     * all which have count 0
+     */
     for (a in nums) {
         candidates[a] = candidates.getOrDefault(a, 0) + 1
         if (candidates.size == K) {
             val it = candidates.entries.iterator()
             while (it.hasNext()) {
                 val item = it.next()
-                if (item.value == 1) it.remove() else item.setValue(item.value - 1)
+                item.setValue(item.value - 1)
+                if (item.value == 0) it.remove()
             }
         }
     }
-    //check correctness of candidates
-    val ans: MutableList<Int> = ArrayList()
-    val it: Iterator<Map.Entry<Int, Int>> = candidates.entries.iterator()
+
+    //Check correctness of all candidates
+    val ans = ArrayList<Int>()
+    val it = candidates.entries.iterator()
     while (it.hasNext()) {
         val key = it.next().key
         var count = 0
@@ -71,4 +80,29 @@ private fun majorityElement3(nums: IntArray): List<Int>? {
         }
     }
     return ans
+}
+
+fun majorityElement4(nums: IntArray): List<Int> {
+    var nOver3 = nums.size/3
+
+    val solution = mutableListOf<Int>()
+    nums.sort()
+    var count = 1
+    for (i in 1 until nums.size) {
+        if (nums[i] == nums[i-1]) {
+            ++count
+        }
+        else {
+            if (count > nOver3) {
+                solution.add(nums[i-1])
+            }
+            // reset the count
+            count = 1
+        }
+    }
+
+    if (count > nOver3) {
+        solution.add(nums[nums.size-1])
+    }
+    return solution
 }
