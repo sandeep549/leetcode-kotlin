@@ -20,9 +20,9 @@ class Solution2130 {
 
         var slow = head
         var fast = head
-        while (fast != null && fast.next != null) {
+        while (fast?.next != null) {
             slow = slow!!.next
-            fast = fast.next.next
+            fast = fast.next!!.next
         }
 
         slow = reverse(slow)
@@ -31,7 +31,7 @@ class Solution2130 {
         var r = slow
         var max = 0
         while (r != null) {
-            max = maxOf(max, l!!.`val` + r!!.`val`)
+            max = maxOf(max, l!!.`val` + r.`val`)
             l = l.next
             r = r.next
         }
