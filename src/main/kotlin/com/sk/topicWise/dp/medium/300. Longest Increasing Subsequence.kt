@@ -19,5 +19,19 @@ class Solution300 {
         }
         return dp.max()
     }
+
+    fun lengthOfLIS2(nums: IntArray): Int {
+        val sub = mutableListOf<Int>()
+        for (x in nums) {
+            if (sub.isEmpty() || sub.last() < x) {
+                sub.add(x)
+            } else {
+                val index = sub.binarySearch(x).let { if (it < 0) -it - 1 else it }
+                sub[index] = x
+            }
+        }
+        return sub.size
+    }
+
 }
 
