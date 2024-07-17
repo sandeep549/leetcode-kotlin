@@ -2,6 +2,7 @@ package com.sk.set21
 
 import com.sk.topicWise.tree.TreeNode
 
+
 class Solution2196 {
     fun createBinaryTree(descriptions: Array<IntArray>): TreeNode? {
         val parentToChildMap = mutableMapOf<Int, Pair<Int, Int>>()
@@ -35,5 +36,24 @@ class Solution2196 {
             node.right = makeTree(rightValue, parentToChildMap)
         }
         return node
+    }
+
+    fun createBinaryTree2(descriptions: Array<IntArray>): TreeNode? {
+        val valueToTreeNodeMap = mutableMapOf<Int, TreeNode>()
+        for ((_, nodeValue, _) in descriptions) {
+            valueToTreeNodeMap[nodeValue] = TreeNode(nodeValue)
+        }
+
+        var root: TreeNode? = null
+        for ((parentValue, childValue, isLeft) in descriptions) {
+            if (valueToTreeNodeMap.containsKey(parentValue).not()) {
+                root = TreeNode(parentValue)
+                valueToTreeNodeMap[parentValue] = root
+            }
+            val parentNode = valueToTreeNodeMap[parentValue]
+            val childNode = valueToTreeNodeMap[childValue]
+            if (isLeft == 1) parentNode?.left = childNode else parentNode?.right = childNode
+        }
+        return root
     }
 }
