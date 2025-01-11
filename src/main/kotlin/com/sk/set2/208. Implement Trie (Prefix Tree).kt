@@ -39,6 +39,6 @@ class Trie208() {
     }
 
     companion object {
-        private const val SIZE = 25
+        private const val SIZE = 26
     }
 }
