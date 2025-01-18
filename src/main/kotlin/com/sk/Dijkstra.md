@@ -73,6 +73,10 @@ fun dijkstra(graph: Map<String, List<Pair<String, Int>>>, source: String): Map<S
         val (currentNode, currentDistance) = priorityQueue.poll()
 
         // Skip if the current distance is not up-to-date
+        // Remove below line -- ?
+        // Once a node is processed with its smallest distance, any stale entry with a larger distance won't update the neighbors due to the if (newDistance < distances[neighbor]!!) condition.
+        // While the algorithm remains correct, processing stale entries like C(5) wastes computational resources since they do not contribute to finding shorter paths.
+        // So while the check is not strictly required for correctness, it's highly recommended for better efficiency.
         if (currentDistance > distances[currentNode]!!) continue
 
         // Process neighbors
