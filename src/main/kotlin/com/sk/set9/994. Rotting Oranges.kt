@@ -1,57 +1,61 @@
 package com.sk.set9
 
-private fun orangesRotting(grid: Array<IntArray>): Int {
-    var rotten = mutableListOf<Pair<Int, Int>>()
-    var fresh = mutableSetOf<Pair<Int, Int>>()
-    for (r in grid.indices) {
-        for (c in grid[0].indices) {
-            if (grid[r][c] == 1) fresh.add(Pair(r, c))
-            else if (grid[r][c] == 2) rotten.add(Pair(r, c))
-        }
-    }
-    fun canRot(r: Int, c: Int) = (r >= 0 && r < grid.size && c >= 0 && c < grid[0].size && grid[r][c] == 1)
-    var minute = 0
-    while (fresh.size > 0) {
-        var freshRotten = mutableListOf<Pair<Int, Int>>()
-        // println("rotten=" + rotten + ", fresh=" + fresh.size)
-        for ((r, c) in rotten) {
-            if (canRot(r, c - 1)) {
-                freshRotten.add(Pair(r, c - 1))
-                fresh.remove(Pair(r, c - 1))
-                grid[r][c - 1] = 2
-            }
-            if (canRot(r, c + 1)) {
-                freshRotten.add(Pair(r, c + 1))
-                fresh.remove(Pair(r, c + 1))
-                grid[r][c + 1] = 2
-            }
-            if (canRot(r - 1, c)) {
-                freshRotten.add(Pair(r - 1, c))
-                fresh.remove(Pair(r - 1, c))
-                grid[r - 1][c] = 2
-            }
-            if (canRot(r + 1, c)) {
-                freshRotten.add(Pair(r + 1, c))
-                fresh.remove(Pair(r + 1, c))
-                grid[r + 1][c] = 2
-            }
-        }
-        // println("freshRotten=" + freshRotten)
-        if (freshRotten.size == 0) break
-        minute++
-        rotten = freshRotten
-    }
-    return if (fresh.size == 0) minute else -1
-}
-
-fun main() {
-    println(
-        orangesRotting(
-            arrayOf(
-                intArrayOf(2, 1, 1),
-                intArrayOf(0, 1, 1),
-                intArrayOf(1, 0, 1)
-            )
+class Solution994 {
+    fun orangesRotting(grid: Array<IntArray>): Int {
+        val directions = arrayOf(
+            intArrayOf(0, 1),  // right
+            intArrayOf(1, 0),  // down
+            intArrayOf(0, -1), // left
+            intArrayOf(-1, 0)  // up
         )
-    )
+        val rows = grid.size
+        val cols = grid[0].size
+        val queue: ArrayDeque<Pair<Int, Int>> = ArrayDeque()
+        var freshOranges = 0
+
+        // Initialize the queue with all rotten oranges and count fresh oranges
+        for (i in 0 until rows) {
+            for (j in 0 until cols) {
+                if (grid[i][j] == 2) {
+                    queue.add(Pair(i, j))
+                } else if (grid[i][j] == 1) {
+                    freshOranges++
+                }
+            }
+        }
+
+        // If there are no fresh oranges, return 0
+        if (freshOranges == 0) return 0
+
+        var minutes = 0
+
+        // BFS to spread the rotting effect
+        while (queue.isNotEmpty()) {
+            val size = queue.size
+            var rottedThisMinute = false
+
+            for (k in 0 until size) {
+                val (x, y) = queue.removeFirst()
+
+                for (dir in directions) {
+                    val newX = x + dir[0]
+                    val newY = y + dir[1]
+
+                    // Check if the adjacent cell is a fresh orange
+                    if (newX in 0 until rows && newY in 0 until cols && grid[newX][newY] == 1) {
+                        grid[newX][newY] = 2
+                        freshOranges--
+                        queue.add(Pair(newX, newY))
+                        rottedThisMinute = true
+                    }
+                }
+            }
+
+            if (rottedThisMinute) minutes++
+        }
+
+        // If there are still fresh oranges left, return -1
+        return if (freshOranges == 0) minutes else -1
+    }
+
 }
