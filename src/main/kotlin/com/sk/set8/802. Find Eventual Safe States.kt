@@ -42,6 +42,6 @@ class Solution802 {
 
     // Topological Sort Using Kahn's Algorithm
     fun eventualSafeNodes2(graph: Array<IntArray>): List<Int> {
-
+        return emptyArray<Int>().toList()
     }
 }
