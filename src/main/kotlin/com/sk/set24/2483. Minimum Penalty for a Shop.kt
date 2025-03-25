@@ -22,5 +22,6 @@ class Solution2483 {
             }
         }
 
+        return 0
     }
 }
