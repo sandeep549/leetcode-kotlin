@@ -1,5 +1,28 @@
 # AGENTS.md — AI Agent Guide for leetcode-kotlin
 
+## AI Copilot Meta Instructions
+> These rules apply every time a LeetCode problem is presented or a solution is requested.
+
+1. **Always research the best-known solution first.**
+   Before writing any code, reason about the theoretically optimal time and space complexity for the problem (consult known algorithms, LeetCode editorial patterns, and competitive programming knowledge). Do not default to the first working approach.
+
+2. **Enumerate all viable approaches.**
+   Present a comparison table of at least 2–3 approaches (e.g., brute-force → better → optimal) with their time and space complexities before implementing.
+
+3. **Implement the optimal solution.**
+   Always implement the most time-efficient solution (prefer lower space complexity as a tiebreaker). If a well-known named algorithm applies (e.g., Kadane's, Boyer-Moore, Dutch National Flag, Floyd's Cycle Detection), use and name it explicitly.
+
+4. **Flag any existing solution quality issues.**
+   If a prior solution exists in the repo and has a correctness bug, suboptimal complexity, or a better Kotlin-idiomatic equivalent, call it out with a clear ⚠️ warning before presenting the improved version.
+
+5. **Prefer Kotlin-idiomatic code.**
+   Use Kotlin standard library features (`groupingBy`, `eachCount`, `scan`, `runningFold`, etc.) when they produce equally efficient and more readable code. Follow the key patterns already established in this repo.
+
+6. **Never add Copilot as a co-author in git commits.**
+   Do not append any `Co-authored-by: GitHub Copilot` or similar trailer lines to commit messages.
+
+---
+
 ## Project Overview
 A personal Kotlin LeetCode solutions repository. No tests, no services — purely algorithmic solutions and reference material. Build target: Kotlin 1.9.10, JVM 11.
 
