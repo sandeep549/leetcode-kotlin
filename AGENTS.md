@@ -17,14 +17,15 @@ src/main/kotlin/com/sk/
   topicWise/          # Solutions grouped by algorithm topic (preferred for new problems)
     binarysearch/     tree/    dp/    graph/    slidingwindow/
     twopointer/       unionfind/  monotonicStack/  heap/  trie/  ...
+    SortingAlgorithms/  # Canonical sorting implementations by algorithm family
     easy/ medium/ hard/   # sub-groupings inside some topic folders
   advanceds/          # Standalone custom data structure impls (Trie, DisjointSet, Heap)
-  customimplementation/ # Interfaces only (e.g., MonotonicQueue)
+  customimplementation/ # Queue abstractions and concrete impls (e.g., MonotonicQueue, MonotonicDecreasingQueue)
   datamodels/         # Shared model classes (NTreeNode)
   sorting/            # Classic sorting algorithm implementations
   z_ImportantCodeSnippet/  # Reusable reference snippets (iterative traversals, etc.)
   todo-revise/        # Problems flagged for revisiting
-  leetcode/           # Plain-text notes: NamedAlgorithms.txt, PendingQuestions.txt, etc.
+  leetcode/           # Notes plus legacy solution buckets (`kotlin/`, `google/`)
   *.md                # Algorithm explainers (Kadane, Dijkstra, Floyd Warshall, 0-1 BFS)
   0000_TrickyCode.kt  # Scratchpad for math tricks (e.g., ceiling division: (p+m-1)/m)
   Test1.kt            # Scratch file for active work-in-progress
@@ -35,6 +36,7 @@ src/main/kotlin/com/sk/
 - **Class name**: `Solution{problemNumber}` — e.g., `class Solution110`
 - **Package**: mirrors directory path — e.g., `package com.sk.topicWise.binarysearch`
 - New solutions go in `topicWise/{topic}/` (preferred) or a new `set{N}/` folder.
+- Legacy files under `leetcode/kotlin/`, `leetcode/google/`, or top-level `topicWise/` may not follow the naming rule; keep existing style when editing in place.
 
 ## Shared Data Models
 Always import these instead of redefining:
@@ -57,5 +59,5 @@ import com.sk.datamodels.NTreeNode      // N-ary tree node (val, children: Array
 | Trie | `advanceds/Trie1.kt`, `advanceds/Trie2.kt` |
 | Monotonic queue interface | `customimplementation/MonotonicQueue.kt` |
 | 0-1 BFS, Dijkstra, Floyd Warshall, Kadane | `*.md` files at `com/sk/` root |
-| Named algorithms (Boyer-Moore, Floyd Cycle) | `topicWise/NamedAlgorithms/` |
+| Named algorithms (Boyer-Moore, Dutch National Flag) | `topicWise/NamedAlgorithms/` |
 
